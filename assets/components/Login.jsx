@@ -16,9 +16,11 @@ const Login = () => {
             console.log(inputPass)
         }
     }
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         console.log("Funciona")
     }
+    
     return (
     <form method="post" onSubmit={handleSubmit}>
         <div className="login">
