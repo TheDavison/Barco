@@ -8,7 +8,7 @@ const Rutas = () => {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Layout />}>
-                    <Route index path="" element={<Index />}></Route>
+                    <Route index path="index" element={<Index />}></Route>
                 </Route>
             </Routes>
         </BrowserRouter>

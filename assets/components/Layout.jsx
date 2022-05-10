@@ -5,9 +5,8 @@ const Layout = () => {
     return (
         <main>
             <nav>
-                Link a index;
+                <Link to={"index"}>Index</Link>
             </nav>
-
             <section>
                 <Outlet />
             </section>
