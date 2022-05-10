@@ -5,10 +5,7 @@ import Header from './Header'
 const Layout = () => {
     return (
         <main>
-            <nav>
-                <Link to={"index"}>Index</Link>
-                <Link to={"login"}>Login</Link>
-            </nav>
+            <Header />
             <section>
                 <Outlet />
             </section>
