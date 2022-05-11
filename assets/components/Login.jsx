@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 
 const Login = () => {
     //VARIABLES
+    const [user, setUser] = useState([])
     const [inputUsername, setInputUsername] = useState("");
     const [inputPass, setInputPass] = useState("");
-    
+
     //FUNCIONES
     const handleChange = (e) => {
         if(e.target.name === "username"){
@@ -18,7 +19,12 @@ const Login = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Funciona")
+        if (inputUsername.length === 0 || inputPass.length === 0) {
+            alert("Rellene todos los campos");
+            return;
+        }else{
+          console.log("fusca");  
+        }
     }
     
     return (
