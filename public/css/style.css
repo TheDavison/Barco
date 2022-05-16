@@ -1,15 +1,17 @@
 
-/* body{
+body{
+    margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    width: 50%;
-} */
+    width: 70%;
+}
 header {
     background-color:blue;
     height: 20px;
+    width:100%;
+    
 }
 header nav{
     display: flex;
@@ -27,7 +29,7 @@ header nav a{
 footer{
     background-color:blue;
     height: 20px;
-    
+    width:100%;
 }
 
 footer a{
