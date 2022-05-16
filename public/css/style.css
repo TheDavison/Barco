@@ -1,0 +1,36 @@
+
+/* body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 50%;
+} */
+header {
+    background-color:blue;
+    height: 20px;
+}
+header nav{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+}
+header nav a{
+    margin-right: 10px;
+    color: white;
+    text-decoration: none;
+    
+}
+
+footer{
+    background-color:blue;
+    height: 20px;
+    
+}
+
+footer a{
+    color: white;
+    text-decoration: none;
+}
