@@ -6,6 +6,7 @@ body{
     justify-content: center;
     align-items: center;
     width: 70%;
+    border: 1px solid black;
 }
 header {
     background-color:blue;

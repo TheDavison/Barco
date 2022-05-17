@@ -25,6 +25,27 @@ class UserController extends AbstractController
         ]);
     }
 
+    #[Route('/list', name: 'list_users', methods: ['GET'])]
+    public function list(UserRepository $userRepository): Response
+    {
+        $users = $userRepository ->findAll();
+        
+        $arrayUsers = [];
+
+        foreach ($users as $user) {
+            $arrayUsers [$user->getId()]['id'] = $user->getId();
+            $arrayUsers [$user->getId()]['username'] = $user->getUsername();
+            $arrayUsers [$user->getId()]['roles'] = $user->getRoles();
+            $arrayUsers [$user->getId()]['donations'] = $user->getDonations();
+        }
+
+
+        return $this->json([
+            'success' => true,
+            'data' => $arrayUsers,
+        ]);
+    }
+
     #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -44,6 +65,23 @@ class UserController extends AbstractController
             'form' => $form,
         ]);
     }
+
+    #[Route('/prueba/new', name: 'app_user_new', methods: ['GET', 'POST'])]
+    public function pruebaNew(Request $request, User $user): Response
+    {
+        $prueba = new User();
+        
+        $data = $request->getContent();
+        $data = json_decode($data, true);
+    
+        return $this->json($data);
+
+        // return $this->renderForm('user/new.html.twig', [
+        //     'user' => $user,
+        //     'form' => $form,
+        // ]);
+    }
+
 
     #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
     public function show(User $user): Response

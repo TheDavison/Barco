@@ -4,6 +4,7 @@ import AboutUs from './AboutUs';
 import Index from './Index';
 import Layout from './Layout';
 import Login from './Login';
+import Register from './Register';
 
 const Rutas = () => {
     return (
@@ -13,6 +14,8 @@ const Rutas = () => {
                     <Route index path="index" element={<Index />}></Route>
                     <Route path="login" element={<Login />}></Route>
                     <Route path="aboutUs" element={<AboutUs />}></Route>
+                    <Route path="register" element={<Register />}></Route>
+                    {/* <Route path="register" element={<Register />}></Route> */}
                 </Route>
             </Routes>
         </BrowserRouter>
