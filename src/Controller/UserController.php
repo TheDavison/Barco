@@ -48,28 +48,28 @@ class UserController extends AbstractController
         ]);
     }
 
+    // #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
+    // public function new(Request $request, EntityManager $entityManager): Response
+    // {
+    //     $user = new User();
+    //     $form = $this->createForm(UserType::class, $user);
+    //     $form->handleRequest($request);
+
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $entityManager->persist($user);
+    //         $entityManager->flush();
+
+    //         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+    //     }
+
+    //     return $this->renderForm('user/new.html.twig', [
+    //         'user' => $user,
+    //         'form' => $form,
+    //     ]);
+    // }
+
     #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManager $entityManager): Response
-    {
-        $user = new User();
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($user);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('user/new.html.twig', [
-            'user' => $user,
-            'form' => $form,
-        ]);
-    }
-
-    #[Route('/prueba/new', name: 'app_user_new', methods: ['GET', 'POST'])]
-    public function pruebaNew(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher,  EntityManagerInterface $entityManager)
+    public function new(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher,  EntityManagerInterface $entityManager)
     {
         
         // $prueba = new User();   
@@ -90,12 +90,12 @@ class UserController extends AbstractController
             $entityManager->flush();
         }
         
-        return $this->json([
-            'success' => true,
-            'data' => $data,
-        ]);
+        // return $this->json([
+        //     'success' => true,
+        //     'data' => $data,
+        // ]);
 
-        // return $this->redirectToRoute("/");
+        return $this->redirectToRoute("/login");
 
         // return $this->renderForm('user/new.html.twig', [
         //     'user' => $user,
