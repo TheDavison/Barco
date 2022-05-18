@@ -1,9 +1,19 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 
 const Users = () => {
-  return (
-    <div>Listado de usuarios</div>
-  )
+    const [users, setUsers] = useState([])
+
+    useEffect( async () => {
+        await axios.get('user/list')
+            .then((response) => )
+      
+      
+    }, [])
+      
+    return (
+        <div>Listado de donaciones</div>
+    )
 }
 
 export default Users

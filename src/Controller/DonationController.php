@@ -25,6 +25,28 @@ class DonationController extends AbstractController
         ]);
     }
 
+    #[Route('/list', name: 'list_donations', methods: ['GET'])]
+    public function list(DonationRepository $donationRepository): Response
+    {
+        $donations = $donationRepository ->findAll();
+        
+        $arrayDonations = [];
+
+        foreach ($donations as $donation) {
+            $arrayDonations [$donation->getId()]['id'] = $donation->getId();
+            $arrayDonations [$donation->getId()]['donator'] = $donation->getDonator();
+            $arrayDonations [$donation->getId()]['creditCard'] = $donation->getCreditCard();
+            $arrayDonations [$donation->getId()]['quantity'] = $donation->getQuantity();
+            $arrayDonations [$donation->getId()]['date'] = $donation->getDate();
+        }
+
+
+        return $this->json([
+            'success' => true,
+            'data' => $arrayDonations,
+        ]);
+    }
+
     #[Route('/new', name: 'app_donation_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
