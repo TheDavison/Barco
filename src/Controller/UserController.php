@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -67,14 +68,30 @@ class UserController extends AbstractController
     }
 
     #[Route('/prueba/new', name: 'app_user_new', methods: ['GET', 'POST'])]
-    public function pruebaNew(Request $request, User $user): Response
+    public function pruebaNew(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher)
     {
-        $prueba = new User();
         
-        $data = $request->getContent();
-        $data = json_decode($data, true);
-    
-        return $this->json($data);
+        // $prueba = new User();   
+        $data = json_decode($request->getContent(), true);
+        
+        if(!$userRepository -> findOneByUsername($data['username'])){
+            $newUser = new User();
+            $newUser -> setUsername($data['username']);
+            $newUser->setPassword(
+                $userPasswordHasher->hashPassword(
+                    $newUser,
+                        $data['password'],
+                    )
+                );
+            var_dump($newUser);die();
+        }
+        
+        return $this->json([
+            'success' => true,
+            'data' => $data,
+        ]);
+
+        // return $this->redirectToRoute("/");
 
         // return $this->renderForm('user/new.html.twig', [
         //     'user' => $user,
