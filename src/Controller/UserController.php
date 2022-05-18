@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,7 +49,7 @@ class UserController extends AbstractController
     }
 
     #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManager $entityManager): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -68,7 +69,7 @@ class UserController extends AbstractController
     }
 
     #[Route('/prueba/new', name: 'app_user_new', methods: ['GET', 'POST'])]
-    public function pruebaNew(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher)
+    public function pruebaNew(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher,  EntityManagerInterface $entityManager)
     {
         
         // $prueba = new User();   
@@ -77,13 +78,16 @@ class UserController extends AbstractController
         if(!$userRepository -> findOneByUsername($data['username'])){
             $newUser = new User();
             $newUser -> setUsername($data['username']);
-            $newUser->setPassword(
+    
+            $newUser -> setPassword(
                 $userPasswordHasher->hashPassword(
                     $newUser,
                         $data['password'],
                     )
                 );
-            var_dump($newUser);die();
+        
+            $entityManager->persist($newUser);
+            $entityManager->flush();
         }
         
         return $this->json([

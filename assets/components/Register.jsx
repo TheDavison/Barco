@@ -26,8 +26,6 @@ const Register = () => {
         .then((response)=>{console.log(response);})
         .catch((error)=>{console.log(error.response.data);});
 
-        axios.get('/user/prueba/new')
-            .then((response)=>{console.log(response?.data);});
         
     }
 
