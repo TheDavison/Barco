@@ -21,7 +21,7 @@ const AboutUs = () => {
         que quieran aportar a la causa y ayudarnos a seguir mejorando nuestro
         proyecto para llegar cada vez más lejos
       </p>
-      <p>Realizado por: Manuel González López(DAW), Zijie "David" Cheng(DAW), Alejandro Abril Coronado(AUTOMOCION), David Cordón Romero(MITF), Raul Cívico Gil(MITF)</p>
+      <p>Realizado por: Manuel González López(DAW), Zijie "David" Cheng(DAW), Alejandro Abril Coronado(TMV), David Cordón Romero(MITF), Raul Cívico Gil(MITF)</p>
     </div>
   );
 };
