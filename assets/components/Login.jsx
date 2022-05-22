@@ -1,23 +1,43 @@
+import axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = ({setCurrentUser}) => {
     //VARIABLES
-    const [user, setUser] = useState([])
+    
     const [inputUsername, setInputUsername] = useState("");
     const [inputPass, setInputPass] = useState("");
     let navigate = useNavigate();
-
+    
     //FUNCIONES
     const handleChange = (e) => {
         if(e.target.name === "username"){
             setInputUsername(e.target.value);
-            console.log(inputUsername)
+            // console.log(inputUsername)
         }
         if(e.target.name === "pass"){
             setInputPass(e.target.value);
-            console.log(inputPass)
+            // console.log(inputPass)
         }
+    }
+    const sessionUser = async  ()=>{
+        await axios.get('/user/list')
+        .then((response)=>{
+            for(let val in response.data.data){
+                if(response.data.data[val]['username']===inputUsername && response.data.data[val]['password']===inputPass){
+                    
+                    localStorage.setItem('currentUser',inputUsername);
+                    setCurrentUser(localStorage.getItem('currentUser'));
+                    
+                    
+                }else{
+                    alert('Contraseña o usuario incorrectos');
+                }
+            }
+            
+        })
+        
+        .catch((error)=>{console.log(error)});
     }
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -25,7 +45,11 @@ const Login = () => {
             alert("Rellene todos los campos");
             return;
         }else{
-          console.log("fusca");
+            sessionUser();
+            
+            // console.log(localStorage.getItem('currentUser'));
+            // console.log(currentUser);
+        //   console.log("fusca");
           navigate('/index', {replace:true}); 
         }
     }
@@ -40,13 +64,15 @@ const Login = () => {
                 </div>
                 <div className="login">
                     <label htmlFor="inputPass">Contraseña </label>
-                    <input type="text" value={inputPass} onChange={handleChange} name="pass" id="inputPass" required autoFocus />
+                    <input type="password" value={inputPass} onChange={handleChange} name="pass" id="inputPass" required autoFocus />
                 </div>
                 <button type="submit">
                     Entrar
                 </button>
+                
 
             </form>
+            
         </div>
   )
 }

@@ -1,8 +1,9 @@
 import React from 'react'
 
-const Index = () => {
+const Index = ({currentUser}) => {
+  // console.log(currentUser);
   return (
-    <div>Hola, estás en Index</div>
+    <div>Hola {currentUser }</div>
   )
 }
 
