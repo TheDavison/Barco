@@ -7,21 +7,23 @@ const Users = () => {
     let getUsuarios = () => {
         axios.get('user/list')
             .then((response) => {                
-                // for(let usuario in response.data.data){
-                    // let { id, username, roles, donations } = response.data.data[usuario];
-                    // let nextUser = { id, username, roles, donations };
-                    // setUsers(prev => [...prev, nextUser] );
-                    let { data } = response.data;
-                    setUsers(data)
-                    console.log(data);
+                for(let usuario in response.data.data){
+                    let { id, username, roles, donations } = response.data.data[usuario];
+                    let nextUser = { id, username, roles, donations };
+                    console.log(nextUser);
+                    setUsers((prev) => [...prev, nextUser] );
+                    // let { data } = response.data;
+                    // setUsers(data);
+                    
+                    // console.log(data);
                     console.log(users)
-                // }
-                console.log(users);
+                }
+                
                 
             })
     // console.log(users);
     }
-
+    // console.log(users);
     useEffect(() => {
         getUsuarios();
     }, [])
@@ -32,6 +34,7 @@ const Users = () => {
             <table>
                 <thead>
                     <tr>
+                        <th>Id</th>
                         <th>Username</th>
                         <th>Roles</th>
                         <th>Donations</th>
@@ -39,14 +42,14 @@ const Users = () => {
                 </thead>
 
                 <tbody>   
-                    {/* {users.map((user, key) =>(
+                    {users.map((user, key) =>(
                         <tr key={key}>
-                            <td>{user.id}</td>;
-                            <td>{user.username}</td>;
-                            <td>{user.roles}</td>;
-                            <td>{user.donations}</td>;
+                            <td>{user.id}</td>
+                            <td>{user.username}</td>
+                            <td>{user.roles}</td>
+                            <td>{user.donations}</td>
                         </tr>
-                    ))} */}
+                    ))}
 
                 </tbody>
             </table>

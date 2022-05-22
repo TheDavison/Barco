@@ -23,18 +23,20 @@ const Login = ({setCurrentUser}) => {
     const sessionUser = async  ()=>{
         await axios.get('/user/list')
         .then((response)=>{
+            let notLogged = true;
             for(let val in response.data.data){
                 if(response.data.data[val]['username']===inputUsername && response.data.data[val]['password']===inputPass){
-                    
                     localStorage.setItem('currentUser',inputUsername);
+                    localStorage.setItem('currentRole',response.data.data[val]['roles']);
                     setCurrentUser(localStorage.getItem('currentUser'));
                     
+                    notLogged=false;    
                     
-                }else{
-                    alert('Contraseña o usuario incorrectos');
                 }
             }
-            
+            if(notLogged){
+                alert('Contraseña o usuario incorrectos');
+            }
         })
         
         .catch((error)=>{console.log(error)});

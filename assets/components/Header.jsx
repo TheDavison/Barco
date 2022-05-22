@@ -3,8 +3,16 @@ import { Link, useNavigate } from 'react-router-dom'
 
 const Header = ({setCurrentUser,currentUser}) => {
     let navigate = useNavigate();
+    let currentRole ='';
+    if(localStorage.getItem('currentRole')){
+
+         currentRole = localStorage.getItem('currentRole').split(',');
+    }
+    // console.log(currentRole);
+    // console.log(typeof currentRole);
     const handleBorrar = () => {
         localStorage.removeItem('currentUser');
+        localStorage.removeItem('currentRole');
         setCurrentUser('');
         navigate('/login', {replace:true}); 
     }
@@ -16,7 +24,7 @@ const Header = ({setCurrentUser,currentUser}) => {
                 {currentUser ? '' : <Link to={"register"}>Register</Link>}
                 
                 
-                <Link to={"admin"}>Admin</Link>
+                {currentRole.indexOf('ROLE_ADMIN')!=-1 ? <Link to={"admin"}>Admin</Link> : ''}
                 {currentUser ? <p onClick={handleBorrar}>Cerrar sesión</p> : ''}
                 
             </nav>
