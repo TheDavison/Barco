@@ -37,6 +37,7 @@ class UserController extends AbstractController
         foreach ($users as $user) {
             $arrayUsers [$user->getId()]['id'] = $user->getId();
             $arrayUsers [$user->getId()]['username'] = $user->getUsername();
+            $arrayUsers [$user->getId()]['password'] = $user->getPassword();
             $arrayUsers [$user->getId()]['roles'] = $user->getRoles();
             $arrayUsers [$user->getId()]['donations'] = $user->getDonations();
         }
@@ -95,7 +96,7 @@ class UserController extends AbstractController
         //     'data' => $data,
         // ]);
 
-        return $this->redirectToRoute("/login");
+        // return $this->redirectToRoute("/login");
 
         // return $this->renderForm('user/new.html.twig', [
         //     'user' => $user,

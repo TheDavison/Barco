@@ -3,10 +3,10 @@ import { Outlet, Link } from 'react-router-dom'
 import Footer from './Footer'
 import Header from './Header'
 
-const Layout = () => {
+const Layout = ({setCurrentUser,currentUser} ) => {
     return (
         <>
-            <Header />
+            <Header setCurrentUser ={setCurrentUser} currentUser={currentUser}/>
              <main> 
                 <Outlet />
              </main> 
