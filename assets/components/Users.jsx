@@ -10,13 +10,12 @@ const Users = () => {
                 for(let usuario in response.data.data){
                     let { id, username, roles, donations } = response.data.data[usuario];
                     let nextUser = { id, username, roles, donations };
-                    console.log(nextUser);
+                    
                     setUsers((prev) => [...prev, nextUser] );
                     // let { data } = response.data;
                     // setUsers(data);
                     
-                    // console.log(data);
-                    console.log(users)
+                    
                 }
                 
                 
