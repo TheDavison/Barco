@@ -1,0 +1,12 @@
+
+body{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height:100%;
+    border: 1px solid black;
+}
+

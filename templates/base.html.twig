@@ -6,9 +6,11 @@
         <link rel="icon" href="./img/logo.png">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {# <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
-            <link rel="stylesheet" href="/css/style.css"/>
+            <link rel="stylesheet" href="/css/body.css"/>
+            
         {% endblock %}
 
     </head>

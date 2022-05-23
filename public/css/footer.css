@@ -1,0 +1,19 @@
+
+footer{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    
+    background-color:blue;
+    height: auto;
+    width:100%;
+}
+
+footer a{
+    color: white;
+    text-decoration: none;
+}
+footer section{
+    width: 33%;
+    text-align: center;
+}

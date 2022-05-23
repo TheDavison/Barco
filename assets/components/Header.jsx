@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-
+import '../../public/css/header.css'; 
 const Header = ({setCurrentUser,currentUser}) => {
     let navigate = useNavigate();
     let currentRole ='';
@@ -25,7 +25,7 @@ const Header = ({setCurrentUser,currentUser}) => {
                 
                 
                 {currentRole.indexOf('ROLE_ADMIN')!=-1 ? <Link to={"admin"}>Admin</Link> : ''}
-                {currentUser ? <p onClick={handleBorrar}>Cerrar sesión</p> : ''}
+                {currentUser ? <p onClick={handleBorrar}>Salir</p> : ''}
                 
             </nav>
         </header>
