@@ -6,12 +6,12 @@ import "../styles/Header.css";
 const Header = ({setCurrentUser,currentUser}) => {
     let navigate = useNavigate();
     let currentRole ='';
+
     if(localStorage.getItem('currentRole')){
 
-         currentRole = localStorage.getItem('currentRole').split(',');
+        currentRole = localStorage.getItem('currentRole').split(',');
     }
-    // console.log(currentRole);
-    // console.log(typeof currentRole);
+    
     const handleBorrar = () => {
         localStorage.removeItem('currentUser');
         localStorage.removeItem('currentRole');
@@ -19,8 +19,13 @@ const Header = ({setCurrentUser,currentUser}) => {
         navigate('/login', {replace:true}); 
     }
     return (
-        <header>
-            <nav>
+        <div className="header__container">
+            <div className="header__brand">
+                <p className="header__brand-logo">Placeholder imagen</p>
+                {/* <img src="" alt="" /> */}
+                <p className="header__brand-name">WALLIE SHIP</p>
+            </div>
+            <nav className="header__nav">
                 <Link to={"index"}>Index</Link>
                 {currentUser ? '' : <Link to={"login"}>Login</Link>}
                 {currentUser ? '' : <Link to={"register"}>Register</Link>}
@@ -30,7 +35,7 @@ const Header = ({setCurrentUser,currentUser}) => {
                 {currentUser ? <p onClick={handleBorrar}>Salir</p> : ''}
                 
             </nav>
-        </header>
+        </div>
     )
 }
 

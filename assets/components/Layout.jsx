@@ -6,13 +6,17 @@ import "../styles/Layout.css";
 
 const Layout = ({setCurrentUser,currentUser} ) => {
     return (
-        <>
-            <Header setCurrentUser ={setCurrentUser} currentUser={currentUser}/>
-             <main> 
+        <div className="layout__container">
+            <header className="layout__header">
+                <Header setCurrentUser ={setCurrentUser} currentUser={currentUser} />
+            </header>
+            <main className="layout__main"> 
                 <Outlet />
-             </main> 
-            <Footer />
-        </>
+            </main> 
+            <footer className="layout__footer">
+                <Footer />
+            </footer>
+        </div>
     )
 }
 

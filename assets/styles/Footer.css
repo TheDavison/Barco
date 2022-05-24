@@ -1,5 +1,5 @@
 
-footer{
+/* footer{
     display: flex;
     flex-flow: row;
     align-items: center;
@@ -16,4 +16,22 @@ footer a{
 footer section{
     width: 33%;
     text-align: center;
+} */
+
+.footer__container{
+    width: 100%;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.footer__section{
+    /* border: 2px solid red; */
+}
+
+a{
+    text-decoration: none;
 }

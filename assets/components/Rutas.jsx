@@ -18,7 +18,7 @@ const Rutas = () => {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Layout setCurrentUser ={setCurrentUser} currentUser={currentUser}/>}>
-                    <Route index path="index" element={<Index currentUser={currentUser}/>}></Route>
+                    <Route index path="" element={<Index currentUser={currentUser}/>}></Route>
                     <Route path="login" element={<Login setCurrentUser ={setCurrentUser} currentUser={currentUser}/>}></Route>
                     <Route path="aboutUs" element={<AboutUs />}></Route>
                     <Route path="register" element={<Register />}></Route>

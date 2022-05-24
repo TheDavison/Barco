@@ -1,3 +1,4 @@
+/* 
 header {
     background-color:blue;
     height: auto;
@@ -19,4 +20,36 @@ header nav a{
 
 header p{
     color:white;
+} */
+
+.header__container{
+    border: 1px solid black
+}
+
+.header__brand{
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.header__brand-logo{
+
+}
+
+.header__brand-name{
+
+}
+
+.header__nav{
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
 }

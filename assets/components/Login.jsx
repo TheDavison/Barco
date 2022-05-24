@@ -35,8 +35,11 @@ const Login = ({setCurrentUser}) => {
                     
                 }
             }
+
             if(notLogged){
                 alert('Contraseña o usuario incorrectos');
+            }else{
+                navigate('/', {replace:true});
             }
         })
         

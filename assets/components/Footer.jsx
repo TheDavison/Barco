@@ -4,17 +4,19 @@ import "../styles/Footer.css";
 
 const Footer = () => {
   return (
-    <footer>
-      <section>
-        <Link to="aboutUs">AboutUs</Link>
-      </section>
-      <section>
+    <div className="footer__container">
+      <section className="footer__section">
         <p>Copyright © 2022 ieshlanz.</p>
       </section>
-      <section>
+
+      <section className="footer__section">
+        <Link to="aboutUs">AboutUs</Link>
+      </section>
+
+      <section className="footer__section">
         Coockies
       </section>
-    </footer>
+    </div>
   );
 };
 
