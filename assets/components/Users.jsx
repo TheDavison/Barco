@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import "../styles/Users.css";
 
 const Users = () => {
     const [users, setUsers] = useState([])
@@ -12,17 +13,10 @@ const Users = () => {
                     let nextUser = { id, username, roles, donations };
                     
                     setUsers((prev) => [...prev, nextUser] );
-                    // let { data } = response.data;
-                    // setUsers(data);
-                    
-                    
                 }
-                
-                
             })
-    // console.log(users);
     }
-    // console.log(users);
+
     useEffect(() => {
         getUsuarios();
     }, [])

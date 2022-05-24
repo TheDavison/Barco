@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Donation;
 use App\Form\DonationType;
 use App\Repository\DonationRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

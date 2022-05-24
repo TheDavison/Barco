@@ -1,4 +1,5 @@
 import React from 'react'
+import "../styles/Index.css";
 
 const Index = ({currentUser}) => {
   // console.log(currentUser);

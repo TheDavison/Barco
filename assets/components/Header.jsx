@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import '../../public/css/header.css'; 
+import "../styles/Header.css";
+
+
 const Header = ({setCurrentUser,currentUser}) => {
     let navigate = useNavigate();
     let currentRole ='';

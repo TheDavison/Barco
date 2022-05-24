@@ -24,7 +24,7 @@ const Rutas = () => {
                     <Route path="register" element={<Register />}></Route>
                     <Route path="admin" element={<Admin />}></Route>
                     <Route path="adminUsers" element={<Users />}></Route>
-                    <Route path="adminDonations" element={currentUser ? <Donations/> : <Login/>}></Route>
+                    <Route path="adminDonations" element={<Donations/>}></Route>
                     {/* <Route path="register" element={<Register />}></Route> */}
                 </Route>
             </Routes>
