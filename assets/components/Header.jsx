@@ -26,7 +26,7 @@ const Header = ({setCurrentUser,currentUser}) => {
                 <p className="header__brand-name">WALLIE SHIP</p>
             </div>
             <nav className="header__nav">
-                <Link to={"index"}>Index</Link>
+                <Link to={""}>Index</Link>
                 {currentUser ? '' : <Link to={"login"}>Login</Link>}
                 {currentUser ? '' : <Link to={"register"}>Register</Link>}
                 

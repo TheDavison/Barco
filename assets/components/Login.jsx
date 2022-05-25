@@ -32,7 +32,6 @@ const Login = ({setCurrentUser}) => {
                     setCurrentUser(localStorage.getItem('currentUser'));
                     
                     notLogged=false;    
-                    
                 }
             }
 
@@ -52,33 +51,26 @@ const Login = ({setCurrentUser}) => {
             return;
         }else{
             sessionUser();
-            
-            // console.log(localStorage.getItem('currentUser'));
-            // console.log(currentUser);
-        //   console.log("fusca");
-          navigate('/index', {replace:true}); 
+            navigate('/index', {replace:true}); 
         }
     }
     
     return (
-        <div>
-            <h2>Login Form</h2>
-            <form method="post" onSubmit={handleSubmit}>
-                <div className="login">
-                    <label htmlFor="inputUsername">Nombre </label>
-                    <input type="text" value={inputUsername} onChange={handleChange} name="username" id="inputUsername" required autoFocus />
+        <div className="login__container">
+            <form method="post" onSubmit={handleSubmit} className="login__form">
+                <h2 className="login__title">Iniciar sesión</h2>
+                <div className="login__field">
+                    <input type="text" value={inputUsername} onChange={handleChange} name="username" id="inputUsername" required autoFocus className="login__input" placeholder="Nombre de usuario"/>
                 </div>
-                <div className="login">
-                    <label htmlFor="inputPass">Contraseña </label>
-                    <input type="password" value={inputPass} onChange={handleChange} name="pass" id="inputPass" required autoFocus />
+
+                <div className="login__field">
+                    <input type="password" value={inputPass} onChange={handleChange} name="pass" id="inputPass" required autoFocus className="login__input" placeholder="Contraseña"/>
                 </div>
-                <button type="submit">
+
+                <button type="submit" className="login__button">
                     Entrar
                 </button>
-                
-
             </form>
-            
         </div>
   )
 }
