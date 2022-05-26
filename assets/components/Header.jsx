@@ -22,8 +22,6 @@ const Header = ({setCurrentUser,currentUser, handleBorrar}) => {
             <nav className="header__nav">
                 <Link to={""}>Index</Link>
                 {currentUser ? '' : <Link to={"login"}>Login</Link>}
-                {currentUser ? '' : <Link to={"register"}>Register</Link>}
-                
                 
                 {currentRole.indexOf('ROLE_ADMIN')!=-1 ? <Link to={"admin"}>Admin</Link> : ''}
                 {currentUser ? <p onClick={handleBorrar}>Salir</p> : ''}

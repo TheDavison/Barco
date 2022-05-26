@@ -36,7 +36,6 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
       mayContinue = true;
     }
 
-    console.log(mayContinue)
     return mayContinue;
   };
 
@@ -51,20 +50,24 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
 
   //------------Métodos de register------------
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     if (checkInputs()) {
-      if (checkUsername()) {
+        let usernameExists = await checkUsername();
+      if (!usernameExists) {
         if (inputPass === inputPassRep) {
           addUser();
-          navigate("/login", { replace: true });
+          setInputUsername("");
+          setInputPass("");
+          setInputPassRep("");
+          setLoging(true);
         } else {
           setError("Las contraseñas no coinciden.");
         }
       } else {
         setError("Ese nombre de usuario ya existe.");
       }
-    }else{
-        setError("Rellene todos los campos por favor.");
+    } else {
+      setError("Rellene todos los campos por favor.");
     }
   };
 
@@ -81,7 +84,7 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
         }
       })
       .catch((error) => {
-        console.log(error);
+        setError("Ha ocurrido un error, intente de nuevo más tarde por favor.");
       });
 
     return usernameExists;
@@ -90,29 +93,29 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
   const addUser = () => {
     axios
       .post("/user/new", {
-        username: inputUsername,
-        password: inputPass,
+        username: inputUsername.trim(),
+        password: inputPass.trim(),
       })
-      .then((response) => {
-        console.log(response);
-      })
-      .then()
+      .then(console.log("Todo ok"))
       .catch((error) => {
-        console.log(error.response.data);
+        setError("Ha ocurrido un error, intente de nuevo más tarde por favor.");
       });
   };
 
   //------------Métodos de login------------
 
-  const handleLogin = () => {
-    if (checkInputs()) {
-      if (sessionUser()) {
-        navigate("/", { replace: true });
-      } else {
-        setError("Credenciales incorrectas, pruebe de nuevo");
-      }
+  const handleLogin = async () => {
+    if (checkInputs() === true) {
+      let puedeContinuar = await sessionUser();
+        if(puedeContinuar){
+            navigate("/", { replace: true });
+         
+        }else{
+            setError("Credenciales incorrectas, pruebe de nuevo");
+        }
+        
     } else {
-        setError("Rellene todos los campos por favor.");
+      setError("Rellene todos los campos por favor.");
     }
   };
 
@@ -122,9 +125,15 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
       .get("/user/list")
       .then((response) => {
         for (let val in response.data.data) {
+            console.log(
+                response.data.data[val]["username"],
+                inputUsername.trim(),
+                response.data.data[val]["password"],
+                inputPass.trim()
+              );
           if (
-            response.data.data[val]["username"] === inputUsername &&
-            response.data.data[val]["password"] === inputPass
+            response.data.data[val]["username"] === inputUsername.trim() &&
+            response.data.data[val]["password"] === inputPass.trim()
           ) {
             localStorage.setItem("currentUser", inputUsername);
             localStorage.setItem(
@@ -136,13 +145,11 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
             mayLogIn = true;
           }
         }
-
-        return mayLogIn;
       })
-
       .catch((error) => {
-        console.log(error);
+        setError("Ha ocurrido un error, intente de nuevo más tarde por favor.");
       });
+    return mayLogIn;
   };
 
   //------------FIN------------
@@ -157,7 +164,6 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
                 ? "form__active enter__cambiar"
                 : "form__disabled enter__cambiar"
             }
-            
           >
             Login
           </div>
