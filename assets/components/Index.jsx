@@ -4,7 +4,7 @@ import "../styles/Index.css";
 const Index = ({currentUser}) => {
   // console.log(currentUser);
   return (
-    <div>Hola {currentUser }</div>
+    <div>Hola, no se si esta funcionando {currentUser }</div>
   )
 }
 

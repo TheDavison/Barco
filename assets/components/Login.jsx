@@ -5,7 +5,7 @@ import "../styles/Login.css";
 
 const Login = ({setCurrentUser}) => {
     //VARIABLES
-    
+    const [loging, setLoging] = useState(true)
     const [inputUsername, setInputUsername] = useState("");
     const [inputPass, setInputPass] = useState("");
     let navigate = useNavigate();
@@ -51,12 +51,19 @@ const Login = ({setCurrentUser}) => {
             return;
         }else{
             sessionUser();
-            navigate('/index', {replace:true}); 
+            navigate('/', {replace:true}); 
         }
+    }
+
+    const handleChangeForm = () => {
+        setLoging(!loging);
     }
     
     return (
         <div className="login__container">
+            <button onClick={handleChangeForm} className={loging ? "active" : ""}>Login</button>
+            <button onClick={handleChangeForm} className={loging ? "" : "active"}>Register</button>
+            
             <form method="post" onSubmit={handleSubmit} className="login__form">
                 <h2 className="login__title">Iniciar sesión</h2>
                 <div className="login__field">
