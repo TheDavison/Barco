@@ -1,0 +1,54 @@
+.enter__container{
+    width: 100%;
+    height: 100%;   
+    border: 1px solid red;
+    /* background-image: url(../images/); */
+
+}
+
+.enter__form{
+    width: 30%;
+    background-color: rgba(0,0,0,0.2);
+    text-align: center;
+    margin: auto;
+    margin-top: 15%;
+    padding: 1vw 0vw 2vw 0vw;
+    border-radius: 35px;
+}
+
+.enter__field{
+    margin-bottom: 15px;
+}
+
+.enter__input, .enter__button{
+    border-radius: 6px;
+    border: none;
+    outline: none;
+}
+
+.enter__changeForm{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.enter__button{
+    background-color: rgba(0,0,0,0.2);
+}   
+
+.enter__cambiar{
+    margin: 10px 10px 0px 10px;
+    background-color: rgba(106, 225, 136, 0.2);
+    width: 70px;
+    border-radius: 8px;
+    padding: 3px;
+}
+
+.form__active{
+    box-shadow: -1px 1px 15px 14px rgba(106, 225, 136, 0.5);
+}
+
+.form__disabled{
+    
+}

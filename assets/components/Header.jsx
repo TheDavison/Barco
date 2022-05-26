@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import "../styles/Header.css";
 
 
-const Header = ({setCurrentUser,currentUser}) => {
+const Header = ({setCurrentUser,currentUser, handleBorrar}) => {
     let navigate = useNavigate();
     let currentRole ='';
 
@@ -12,12 +12,6 @@ const Header = ({setCurrentUser,currentUser}) => {
         currentRole = localStorage.getItem('currentRole').split(',');
     }
     
-    const handleBorrar = () => {
-        localStorage.removeItem('currentUser');
-        localStorage.removeItem('currentRole');
-        setCurrentUser('');
-        navigate('/login', {replace:true}); 
-    }
     return (
         <div className="header__container">
             <div className="header__brand">

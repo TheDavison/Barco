@@ -5,8 +5,8 @@ import Admin from './Admin';
 import Donations from './Donations';
 import Index from './Index';
 import Layout from './Layout';
-import Login from './Login';
-import Register from './Register';
+import EnterForm from './EnterForm';
+
 import Users from './Users';
 
 const Rutas = () => {
@@ -14,14 +14,21 @@ const Rutas = () => {
     useEffect(()=>{
         setCurrentUser(localStorage.getItem('currentUser'));
     },[])
+
+    const handleBorrar = () => {
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('currentRole');
+        setCurrentUser('');
+        navigate('/login', {replace:true}); 
+    }
+
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Layout setCurrentUser ={setCurrentUser} currentUser={currentUser}/>}>
+                <Route path="/" element={<Layout setCurrentUser ={setCurrentUser} currentUser={currentUser} handleBorrar={handleBorrar} />}>
                     <Route index path="" element={<Index currentUser={currentUser}/>}></Route>
-                    <Route path="login" element={<Login setCurrentUser ={setCurrentUser} currentUser={currentUser}/>}></Route>
+                    <Route path="login" element={<EnterForm setCurrentUser ={setCurrentUser} currentUser={currentUser}/>}></Route>
                     <Route path="aboutUs" element={<AboutUs />}></Route>
-                    <Route path="register" element={<Register />}></Route>
                     <Route path="admin" element={<Admin />}></Route>
                     <Route path="adminUsers" element={<Users />}></Route>
                     <Route path="adminDonations" element={<Donations/>}></Route>

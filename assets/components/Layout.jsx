@@ -4,11 +4,11 @@ import Footer from './Footer'
 import Header from './Header'
 import "../styles/Layout.css";
 
-const Layout = ({setCurrentUser,currentUser} ) => {
+const Layout = ({setCurrentUser,currentUser, handleBorrar} ) => {
     return (
         <div className="layout__container">
             <header className="layout__header">
-                <Header setCurrentUser ={setCurrentUser} currentUser={currentUser} />
+                <Header setCurrentUser ={setCurrentUser} currentUser={currentUser} handleBorrar={handleBorrar}/>
             </header>
             <main className="layout__main"> 
                 <Outlet />
