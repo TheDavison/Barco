@@ -37,14 +37,6 @@ header p{
     padding-left: 10px;
 }
 
-.header__brand-logo{
-
-}
-
-.header__brand-name{
-
-}
-
 .header__nav{
     /* border: 1px solid black; */
     display: flex;

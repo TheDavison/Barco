@@ -5,7 +5,7 @@ import "../styles/Header.css";
 
 const Header = ({setCurrentUser,currentUser, handleBorrar}) => {
     let navigate = useNavigate();
-    let currentRole ='';
+    let currentRole = "";
 
     if(localStorage.getItem('currentRole')){
 

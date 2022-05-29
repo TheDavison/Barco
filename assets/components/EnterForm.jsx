@@ -52,7 +52,7 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
 
   const handleRegister = async () => {
     if (checkInputs()) {
-        let usernameExists = await checkUsername();
+      let usernameExists = await checkUsername();
       if (!usernameExists) {
         if (inputPass === inputPassRep) {
           addUser();
@@ -107,13 +107,11 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
   const handleLogin = async () => {
     if (checkInputs() === true) {
       let puedeContinuar = await sessionUser();
-        if(puedeContinuar){
-            navigate("/", { replace: true });
-         
-        }else{
-            setError("Credenciales incorrectas, pruebe de nuevo");
-        }
-        
+      if (puedeContinuar) {
+        navigate("/", { replace: true });
+      } else {
+        setError("Credenciales incorrectas, pruebe de nuevo");
+      }
     } else {
       setError("Rellene todos los campos por favor.");
     }
@@ -121,34 +119,22 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
 
   const sessionUser = async () => {
     let mayLogIn = false;
+    
     await axios
-      .get("/user/list")
+      .post("/user/login", {
+        username: inputUsername.trim(),
+        password: inputPass.trim(),
+      })
       .then((response) => {
-        for (let val in response.data.data) {
-            console.log(
-                response.data.data[val]["username"],
-                inputUsername.trim(),
-                response.data.data[val]["password"],
-                inputPass.trim()
-              );
-          if (
-            response.data.data[val]["username"] === inputUsername.trim() &&
-            response.data.data[val]["password"] === inputPass.trim()
-          ) {
-            localStorage.setItem("currentUser", inputUsername);
-            localStorage.setItem(
-              "currentRole",
-              response.data.data[val]["roles"]
-            );
-            setCurrentUser(localStorage.getItem("currentUser"));
-
-            mayLogIn = true;
-          }
-        }
+        localStorage.setItem("currentUser", response.data.username);
+        localStorage.setItem("currentRole", response.data.roles);
+        setCurrentUser(localStorage.getItem("currentUser"));
+        mayLogIn = true;
       })
       .catch((error) => {
         setError("Ha ocurrido un error, intente de nuevo más tarde por favor.");
       });
+
     return mayLogIn;
   };
 

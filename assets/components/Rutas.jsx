@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom'
 import AboutUs from './AboutUs';
 import Admin from './Admin';
 import Donations from './Donations';
@@ -11,6 +11,7 @@ import Users from './Users';
 
 const Rutas = () => {
     const [currentUser,setCurrentUser ] = useState(null);
+    
     useEffect(()=>{
         setCurrentUser(localStorage.getItem('currentUser'));
     },[])
@@ -19,7 +20,6 @@ const Rutas = () => {
         localStorage.removeItem('currentUser');
         localStorage.removeItem('currentRole');
         setCurrentUser('');
-        navigate('/login', {replace:true}); 
     }
 
     return (

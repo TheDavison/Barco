@@ -27,6 +27,14 @@ class UserController extends AbstractController
         ]);
     }
 
+    #[Route('/login', name: 'user_login')]
+    public function login(): Response
+    {
+        if ($this->getUser()) {
+            return $this->json($this->getUser(), Response::HTTP_OK, []);
+        } 
+    }
+
     #[Route('/list', name: 'list_users', methods: ['GET'])]
     public function list(UserRepository $userRepository): Response
     {
