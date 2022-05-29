@@ -24,7 +24,7 @@ const Users = () => {
     return (
         <div>
             <h2>Listado de usuarios</h2>
-            <table>
+            <table className='adminUser__table'>
                 <thead>
                     <tr>
                         <th>Id</th>
