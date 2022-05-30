@@ -6,12 +6,13 @@ const Donations = () => {
   const [donations, setDonations] = useState([]);
 
   let getDonaciones = () => {
-    axios.get("../donation/list").then((response) => {
+    axios.get("/donation/list").then((response) => {
       if (response.data.data) {
+          console.log(response);
         for (let donacion in response.data.data) {
           let { id, quantity, date } = response.data.data[donacion];
-          let { username } = response.data.data[donacion].donator;
-          let nextDonation = { id, username, quantity, date };
+          let { donator } = response.data.data[donacion];
+          let nextDonation = { id, donator, quantity, date };
 
           setDonations((prev) => [...prev, nextDonation]);
         }
@@ -24,9 +25,9 @@ const Donations = () => {
   }, []);
 
   return (
-    <div>
+    <div className="donations__container">
       <h2>Listado de donaciones</h2>
-      <table>
+      <table className="adminDonation__table">
         <thead>
           <tr>
             <th>Id</th>
@@ -40,7 +41,7 @@ const Donations = () => {
           {donations.map((donation, key) => (
             <tr key={key}>
               <td>{donation.id}</td>
-              <td>{donation.username}</td>
+              <td>{donation.donator}</td>
               <td>{donation.quantity}</td>
               <td>{donation.date}</td>
             </tr>

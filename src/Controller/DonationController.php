@@ -35,10 +35,9 @@ class DonationController extends AbstractController
 
         foreach ($donations as $donation) {
             $arrayDonations [$donation->getId()]['id'] = $donation->getId();
-            $arrayDonations [$donation->getId()]['donator'] = $donation->getDonator();
-            $arrayDonations [$donation->getId()]['creditCard'] = $donation->getCreditCard();
+            $arrayDonations [$donation->getId()]['donator'] = $donation->getDonator()->getUsername();
             $arrayDonations [$donation->getId()]['quantity'] = $donation->getQuantity();
-            $arrayDonations [$donation->getId()]['date'] = $donation->getDate();
+            $arrayDonations [$donation->getId()]['date'] = $donation->getDate()->format("d/m/Y - H:i");
         }
 
 

@@ -47,7 +47,6 @@ class UserController extends AbstractController
             $arrayUsers [$user->getId()]['username'] = $user->getUsername();
             $arrayUsers [$user->getId()]['password'] = $user->getPassword();
             $arrayUsers [$user->getId()]['roles'] = $user->getRoles();
-            $arrayUsers [$user->getId()]['donations'] = $user->getDonations();
         }
 
 
