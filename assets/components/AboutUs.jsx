@@ -3,7 +3,7 @@ import "../styles/AboutUs.css";
 
 const AboutUs = () => {
   return (
-    <div>
+    <div className={'aboutUs__container'}>
       <p>
         Este es un proyecto que hemos realizado entre distintos ciclos
         formativos de grado superior, aportando cada uno un poco de su ambito.

@@ -22,7 +22,7 @@ const Users = () => {
     }, [])
       
     return (
-        <div>
+        <div className='users__container'>
             <h2>Listado de usuarios</h2>
             <table className='adminUser__table'>
                 <thead>

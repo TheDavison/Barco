@@ -4,7 +4,7 @@ import "../styles/Admin.css";
 
 const Admin = () => {
   return (
-    <div>
+    <div className='admin__container'>
         <h2>Hola admin</h2>
         <nav>
             <Link to={"../adminUsers"}>Usuarios</Link>
