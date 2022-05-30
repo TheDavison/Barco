@@ -7,13 +7,17 @@
     /* border: 1px solid black; */
     flex-direction: column;
 }
-
+.admin__container nav {
+    display: flex;
+}
 .admin__container nav > a:visited{
     text-decoration: none;
 }
 
 
 .admin__container nav > a{
+   
+    
     padding: 10px;
 }
 
