@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import "../styles/Header.css";
-
+import {logo} from '../img/logo.png ';
 
 const Header = ({setCurrentUser,currentUser, handleBorrar}) => {
     let navigate = useNavigate();
@@ -16,7 +16,7 @@ const Header = ({setCurrentUser,currentUser, handleBorrar}) => {
         <div className="header__container">
             <div className="header__brand">
                 <p className="header__brand-logo">Placeholder imagen</p>
-                {/* <img src="" alt="" /> */}
+                { <img src={logo} alt='LOGO' />}
                 <p className="header__brand-name">WALLIE SHIP</p>
             </div>
             <nav className="header__nav">
