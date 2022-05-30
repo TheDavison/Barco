@@ -6,11 +6,12 @@ const Users = () => {
   const [users, setUsers] = useState([]);
 
   let getUsuarios = () => {
-    axios.get("../user/list").then((response) => {
+      console.log("entrando en getUsuarios")
+    axios.get("/user/list").then((response) => {
       if (response.data.data) {
         for (let usuario in response.data.data) {
-          let { id, username, roles, donations } = response.data.data[usuario];
-          let nextUser = { id, username, roles, donations };
+          let { id, username, roles } = response.data.data[usuario];
+          let nextUser = { id, username, roles };
 
           setUsers((prev) => [...prev, nextUser]);
         }
@@ -20,6 +21,7 @@ const Users = () => {
 
   useEffect(() => {
     getUsuarios();
+    console.log("iniciando app")
   }, []);
 
   return (
@@ -31,7 +33,6 @@ const Users = () => {
             <th>Id</th>
             <th>Username</th>
             <th>Roles</th>
-            <th>Donations</th>
           </tr>
         </thead>
 
@@ -41,7 +42,6 @@ const Users = () => {
               <td>{user.id}</td>
               <td>{user.username}</td>
               <td>{user.roles}</td>
-              <td>{user.donations}</td>
             </tr>
           ))}
         </tbody>
