@@ -8,7 +8,6 @@ const Donations = () => {
   let getDonaciones = () => {
     axios.get("/donation/list").then((response) => {
       if (response.data.data) {
-          console.log(response);
         for (let donacion in response.data.data) {
           let { id, quantity, date } = response.data.data[donacion];
           let { donator } = response.data.data[donacion];

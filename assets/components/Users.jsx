@@ -6,7 +6,6 @@ const Users = () => {
   const [users, setUsers] = useState([]);
 
   let getUsuarios = () => {
-      console.log("entrando en getUsuarios")
     axios.get("/user/list").then((response) => {
       if (response.data.data) {
         for (let usuario in response.data.data) {

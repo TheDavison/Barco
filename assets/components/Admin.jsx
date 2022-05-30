@@ -7,8 +7,8 @@ const Admin = () => {
     <div className='admin__container'>
         <h2>Hola admin</h2>
         <nav>
-            <Link to={"./users"}>Usuarios</Link>
-            <Link to={"./donations"}>Donaciones</Link>
+            <Link to={"./users"}><div className='admin__nav__button'>Usuarios</div></Link>
+            <Link to={"./donations"}><div className='admin__nav__button'>Donaciones</div></Link>
         </nav>
     </div>
   )
