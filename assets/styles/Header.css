@@ -23,6 +23,8 @@ header p{
 } */
 
 .header__container{
+    background: rgb(2,0,36);
+background: linear-gradient(333deg, rgba(2,0,36,1) 0%, rgba(21,82,221,1) 15%, rgba(255,255,255,1) 100%);
     border: 1px solid black
 }
 
@@ -44,4 +46,5 @@ header p{
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
+    
 }

@@ -1,3 +1,9 @@
 .layout__main{
     height: 71.4vw;
+    border: 1px solid black;
+    display: flex;
+    /* flex-flow: column; */
+    justify-content: center;
+    background-color:whitesmoke;
 }
+
