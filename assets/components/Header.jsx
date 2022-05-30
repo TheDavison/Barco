@@ -19,10 +19,10 @@ const Header = ({setCurrentUser, currentUser, handleBorrar}) => {
                 <p className="header__brand-name">WALLIE SHIP</p>
             </div>
             <nav className="header__nav">
-                <Link to={""}>Index</Link>
-                {currentUser ? '' : <Link to={"login"}>Login</Link>}
+                <Link to={""}><div className='hader__nav__button'>Index</div></Link>
+                {currentUser ? '' : <Link to={"login"}><div className='hader__nav__button'>Login</div></Link>}
                 
-                {currentRole.indexOf('ROLE_ADMIN')!=-1 ? <Link to={"admin"}>Admin</Link> : ''}
+                {currentRole.indexOf('ROLE_ADMIN')!=-1 ? <Link to={"admin"}><div className='hader__nav__button'>Admin</div></Link> : ''}
                 {currentUser ? <p onClick={handleBorrar}>Salir</p> : ''}
                 
             </nav>
