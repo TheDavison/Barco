@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom'
 import AboutUs from './AboutUs';
 import Admin from './Admin';
+import AdminLayout from './AdminLayout';
 import Donations from './Donations';
 import Index from './Index';
 import Layout from './Layout';
@@ -29,9 +30,10 @@ const Rutas = () => {
                     <Route index path="" element={<Index currentUser={currentUser}/>}></Route>
                     <Route path="login" element={<EnterForm setCurrentUser ={setCurrentUser} currentUser={currentUser}/>}></Route>
                     <Route path="aboutUs" element={<AboutUs />}></Route>
-                    <Route path="admin" element={<Admin />}></Route>
-                    <Route path="adminUsers" element={<Users />}></Route>
-                    <Route path="adminDonations" element={<Donations/>}></Route>
+                    <Route path="admin" element={<AdminLayout />}>
+                        <Route path="/admin/users" element={<Users />}></Route>
+                        <Route path="/admin/donations" element={<Donations/>}></Route>
+                    </Route>
                     {/* <Route path="register" element={<Register />}></Route> */}
                 </Route>
             </Routes>

@@ -1,54 +1,53 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import "../styles/Users.css";
 
 const Users = () => {
-    const [users, setUsers] = useState([])
+  const [users, setUsers] = useState([]);
 
-    let getUsuarios = () => {
-        axios.get('user/list')
-            .then((response) => {                
-                for(let usuario in response.data.data){
-                    let { id, username, roles, donations } = response.data.data[usuario];
-                    let nextUser = { id, username, roles, donations };
-                    
-                    setUsers((prev) => [...prev, nextUser] );
-                }
-            })
-    }
+  let getUsuarios = () => {
+    axios.get("../user/list").then((response) => {
+      if (response.data.data) {
+        for (let usuario in response.data.data) {
+          let { id, username, roles, donations } = response.data.data[usuario];
+          let nextUser = { id, username, roles, donations };
 
-    useEffect(() => {
-        getUsuarios();
-    }, [])
-      
-    return (
-        <div className='users__container'>
-            <h2>Listado de usuarios</h2>
-            <table className='adminUser__table'>
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Username</th>
-                        <th>Roles</th>
-                        <th>Donations</th>
-                    </tr>
-                </thead>
+          setUsers((prev) => [...prev, nextUser]);
+        }
+      }
+    });
+  };
 
-                <tbody>   
-                    {users.map((user, key) =>(
-                        <tr key={key}>
-                            <td>{user.id}</td>
-                            <td>{user.username}</td>
-                            <td>{user.roles}</td>
-                            <td>{user.donations}</td>
-                        </tr>
-                    ))}
+  useEffect(() => {
+    getUsuarios();
+  }, []);
 
-                </tbody>
-            </table>
-        </div>
-        
-    )
-}
+  return (
+    <div className="users__container">
+      <h2>Listado de usuarios</h2>
+      <table className="adminUser__table">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Roles</th>
+            <th>Donations</th>
+          </tr>
+        </thead>
 
-export default Users
+        <tbody>
+          {users.map((user, key) => (
+            <tr key={key}>
+              <td>{user.id}</td>
+              <td>{user.username}</td>
+              <td>{user.roles}</td>
+              <td>{user.donations}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+export default Users;

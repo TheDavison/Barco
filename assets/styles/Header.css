@@ -39,6 +39,16 @@ background: linear-gradient(333deg, rgba(2,0,36,1) 0%, rgba(21,82,221,1) 15%, rg
     padding-left: 10px;
 }
 
+.header__brand-logo{
+    width: 80px;
+}
+
+.header__brand-name{
+    color: white;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
 .header__nav{
     /* border: 1px solid black; */
     display: flex;
