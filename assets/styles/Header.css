@@ -80,3 +80,9 @@ background: linear-gradient(333deg, rgba(2,0,36,1) 0%, rgba(21,82,221,1) 15%, rg
 .header__nav__button a:visited{
     color: black;
 }
+
+.header__exit{
+    
+    width: 50px;
+    cursor: pointer;
+}
