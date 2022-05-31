@@ -9,6 +9,7 @@ import Layout from './Layout';
 import EnterForm from './EnterForm';
 
 import Users from './Users';
+import Cookies from './Cookies';
 
 const Rutas = () => {
     const [currentUser,setCurrentUser ] = useState(null);
@@ -30,6 +31,7 @@ const Rutas = () => {
                     <Route index path="" element={<Index currentUser={currentUser}/>}></Route>
                     <Route path="login" element={<EnterForm setCurrentUser ={setCurrentUser} currentUser={currentUser}/>}></Route>
                     <Route path="aboutUs" element={<AboutUs />}></Route>
+                    <Route path="cookies" element={<Cookies />}></Route>
                     <Route path="admin" element={<AdminLayout />}>
                         <Route path="/admin/users" element={<Users />}></Route>
                         <Route path="/admin/donations" element={<Donations/>}></Route>

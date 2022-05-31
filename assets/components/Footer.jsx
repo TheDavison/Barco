@@ -14,7 +14,7 @@ const Footer = () => {
       </section>
 
       <section className="footer__section">
-        Coockies
+        <Link to="cookies">Cookies</Link>
       </section>
     </div>
   );
