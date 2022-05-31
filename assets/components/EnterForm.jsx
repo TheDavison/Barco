@@ -182,7 +182,7 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
 
         <div className="enter__field">
           <input
-            type="text"
+            type="password"
             value={inputPass}
             onChange={handleChange}
             name="pass"
@@ -197,7 +197,7 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
         ) : (
           <div className="enter__field">
             <input
-              type="text"
+              type="password"
               value={inputPassRep}
               onChange={handleChange}
               name="passRep"
