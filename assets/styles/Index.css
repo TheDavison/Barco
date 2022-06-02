@@ -18,7 +18,7 @@
 
 .index__add{
     flex: 1;
-    border: 1px solid black;
+    border: 1px solid #F2F2F2;
 }
 
 .index__main{
@@ -33,7 +33,7 @@
     margin-top: 20px;
     width: 80%;
     height: 50%;
-    border: 1px solid black;
+    border: 1px solid #F2F2F2;
 }
 
 .index__donators{
