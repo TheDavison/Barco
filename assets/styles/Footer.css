@@ -20,9 +20,9 @@ footer section{
 
 .footer__container{
     width: 100%;
-    border: 1px solid black;
-    background: rgb(2,0,36);
-background: linear-gradient(333deg, rgba(2,0,36,1) 0%, rgba(21,82,221,1) 15%, rgba(255,255,255,1) 100%);
+    border: 1px solid #F2F2F2;
+    background: #18181B;
+/* background: linear-gradient(333deg, rgba(2,0,36,1) 0%, rgba(21,82,221,1) 15%, rgba(255,255,255,1) 100%); */
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -30,7 +30,13 @@ background: linear-gradient(333deg, rgba(2,0,36,1) 0%, rgba(21,82,221,1) 15%, rg
     align-items: center;
 }
 
-
-a{
+footer p{
+    color: #F2F2F2;
+}
+footer a{
+    color: #F2F2F2;
     text-decoration: none;
+}
+footer a:visited{
+    color: #F2F2F2;
 }

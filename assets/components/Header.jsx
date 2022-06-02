@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import "../styles/Header.css";
 import logo from '../img/logo.png';
-import exit from '../img/exit.png';
+import exit from '../img/exitIcon.png';
 
 const Header = ({setCurrentUser, currentUser, handleBorrar}) => {
     let navigate = useNavigate();
@@ -19,6 +19,7 @@ const Header = ({setCurrentUser, currentUser, handleBorrar}) => {
                 <img src={logo} alt='LOGO' className='header__brand-logo'/>
                 <p className="header__brand-name">WALLIE SHIP</p>
             </div>
+            <hr/>
             <nav className="header__nav">
                 <Link to={""}><div className='hader__nav__button'>Index</div></Link>
                 {currentUser ? '' : <Link to={"login"}><div className='hader__nav__button'>Login</div></Link>}

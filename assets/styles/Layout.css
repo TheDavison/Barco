@@ -4,9 +4,11 @@
     /* overflow-y: scroll; */
     /* display: flex;
     justify-content: center; */
+    background-color:#222226;
+    color: #f2f2f2;
 }
 
 a{
     text-decoration: none;
-    color: black;
+    color: #f2f2f2;
 }
