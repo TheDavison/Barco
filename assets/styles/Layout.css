@@ -1,3 +1,10 @@
+*{
+    margin:0;
+    padding:0;
+}
+.layout__container {
+    width:99.85%;
+}
 .layout__main{
     height: 71.4vw;
     /* border: 1px solid black; */
