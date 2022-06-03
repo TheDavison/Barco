@@ -4,12 +4,17 @@ import '../styles/Cookies.css';
 const Cookies = () => {
   return (
     <div className='cookies__container'>
+      
+      <section className='cookies__section'>
       <h2>Política de cookies</h2>
       <p>
         La presente política de cookies tiene por finalidad informarle de manera
         clara y precisa sobre las cookies que se utilizan en la página web de la
         Biblioteca del I.E.S. HLANZ.
       </p>
+      </section>
+      
+      <section className='cookies__section'>
       <h3>¿Qué son las cookies?</h3>
 
       <p>
@@ -20,8 +25,10 @@ const Cookies = () => {
         resulte más útil. Las cookies desempeñan un papel muy importante y
         contribuyen a tener una mejor experiencia de navegación para el usuario.
       </p>
-
-      <h3>Tipos de cookies</h3>
+      </section>
+      
+      <section className='cookies__section'>
+        <h3>Tipos de cookies</h3>
 
       <p>
         Según quién sea la entidad que gestione el dominio desde dónde se envían
@@ -37,6 +44,8 @@ const Cookies = () => {
         Guía sobre el uso de las cookies de la Agencia Española de Protección de
         Datos.
       </p>
+      </section>
+      <section className='cookies__section'>
       <h3>Cookies utilizadas en la web</h3>
 
       <p>
@@ -71,12 +80,16 @@ const Cookies = () => {
         primeros no se les muestre información en la parte superior de la página
         al respecto.
       </p>
+      </section>
+      <section className='cookies__section'>
       <h3>Aceptación de la política de cookies</h3>
 
       <p>
         Pulsando el botón Entendido se asume que usted acepta el uso de cookies.
       </p>
-
+      <input type="checkbox" value='aceptar' />
+      </section>
+      <section className='cookies__section'>
       <h3>Cómo modificar la configuración de las cookies</h3>
 
       <p>
@@ -85,6 +98,8 @@ const Cookies = () => {
         cada navegador la operativa es diferente, la función de "Ayuda" le
         mostrará cómo hacerlo.
       </p>
+      </section>
+
     </div>
   );
 };

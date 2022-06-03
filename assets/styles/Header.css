@@ -51,6 +51,7 @@ header p{
 
 .header__nav{
     /* border: 1px solid black; */
+    height: 40px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

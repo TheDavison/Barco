@@ -35,13 +35,24 @@
 }
 
 .enter__button{
+    width:100px;
+    height:25px;
+    color:#F2F2F2;
     background-color: #0511f2;
+    border-top: 1px solid #0000D6;
+    border-right: 1px solid #F2F2F2;
+    border-bottom: 1px solid #F2F2F2;
+    border-left: 1px solid #0000D6;
     cursor:pointer;
 }   
 
 .enter__cambiar{
     margin: 10px 10px 0px 10px;
     background-color: #0511f2;
+    border-top: 1px solid #0000D6;
+    border-right: 1px solid #F2F2F2;
+    border-bottom: 1px solid #F2F2F2;
+    border-left: 1px solid #0000D6;
     width: 70px;
     border-radius: 8px;
     padding: 3px;
@@ -49,5 +60,5 @@
 }
 
 .form__active{
-    box-shadow: -1px 1px 15px 14px #0000D6;
+    box-shadow: -1px 1px 15px 4px #0000D6;
 }
