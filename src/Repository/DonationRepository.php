@@ -47,6 +47,20 @@ class DonationRepository extends ServiceEntityRepository
         }
     }
 
+    public function findByTopDonators(): array
+   {
+       return $this->createQueryBuilder('d')
+           ->join('d.donator', 'u')
+           ->select('d.id, SUM(d.quantity) AS quantity, u.username AS donator')
+           ->groupBy('d.donator')
+           ->orderBy('SUM(d.quantity)', 'DESC')
+           ->setMaxResults(3)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
+//    }
+
 //    /**
 //     * @return Donation[] Returns an array of Donation objects
 //     */

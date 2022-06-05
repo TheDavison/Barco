@@ -47,6 +47,26 @@ class DonationController extends AbstractController
         ]);
     }
 
+    #[Route('/getTop', name: 'top_donators', methods: ['GET'])]
+    public function getTop(DonationRepository $donationRepository): Response
+    {
+        $donations = $donationRepository ->findByTopDonators();
+        
+        $arrayDonations = [];
+
+        for($i = 0; $i < count($donations); $i++){
+            $arrayDonations [$i]['id'] = $donations[$i]["id"];
+            $arrayDonations [$i]['donator'] = $donations[$i]["donator"];
+            $arrayDonations [$i]['quantity'] = $donations[$i]["quantity"];
+        }
+
+
+        return $this->json([
+            'success' => true,
+            'data' => $arrayDonations,
+        ]);
+    }
+
     #[Route('/new', name: 'app_donation_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
