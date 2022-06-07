@@ -85,7 +85,7 @@ const Cookies = () => {
       <h3>Aceptación de la política de cookies</h3>
 
       <p>
-        Pulsando el botón Entendido se asume que usted acepta el uso de cookies.
+        Pulsando el botón se asume que usted acepta el uso de cookies.
       </p>
       <input type="checkbox" value='aceptar' />
       </section>
