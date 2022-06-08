@@ -9,11 +9,19 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
   const [inputPassRep, setInputPassRep] = useState("");
   const [error, setError] = useState("");
   const [loging, setLoging] = useState(true);
+  const [terms, setTerms] = useState(false);
+
+  let expresion = new RegExp();
 
   let navigate = useNavigate();
 
   const handleChangeForm = (type) => {
     setLoging(type);
+  };
+
+  const handleAcceptTerms = () => {
+    setTerms(!terms);
+    setError("");
   };
 
   const handleChange = (e) => {
@@ -30,10 +38,16 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
   };
 
   const checkInputs = () => {
-    let mayContinue = false;
+    let mayContinue = true;
 
-    if (inputUsername.trim().length != 0 && inputPass.trim().length != 0) {
-      mayContinue = true;
+    expresion = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}/gm;
+    if (!expresion.test(inputPass)) {
+      mayContinue = false;
+    }
+
+    expresion = /(?=.*[a-z]).{3,}/gm;
+    if (!expresion.test(inputUsername)) {
+      mayContinue = false;
     }
 
     return mayContinue;
@@ -53,18 +67,22 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
   const handleRegister = async () => {
     if (checkInputs()) {
       let usernameExists = await checkUsername();
-      if (!usernameExists) {
-        if (inputPass === inputPassRep) {
-          addUser();
-          setInputUsername("");
-          setInputPass("");
-          setInputPassRep("");
-          setLoging(true);
+      if (terms) {
+        if (!usernameExists) {
+          if (inputPass === inputPassRep) {
+            addUser();
+            setInputUsername("");
+            setInputPass("");
+            setInputPassRep("");
+            setLoging(true);
+          } else {
+            setError("Las contraseñas no coinciden.");
+          }
         } else {
-          setError("Las contraseñas no coinciden.");
+          setError("Ese nombre de usuario ya existe.");
         }
       } else {
-        setError("Ese nombre de usuario ya existe.");
+        setError("Acepte los términos antes de continuar.");
       }
     } else {
       setError("Rellene todos los campos por favor.");
@@ -119,7 +137,7 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
 
   const sessionUser = async () => {
     let mayLogIn = false;
-    
+
     await axios
       .post("/user/login", {
         username: inputUsername.trim(),
@@ -168,6 +186,7 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
         <h2 className="enter__title">
           {loging ? "Iniciar Sesión" : "Regístrate!"}
         </h2>
+
         <div className="enter__field">
           <input
             type="text"
@@ -204,6 +223,19 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
               id="inputPassRep"
               className="enter__input"
               placeholder="Repita la contraseña"
+            />
+          </div>
+        )}
+
+        {loging ? (
+          ""
+        ) : (
+          <div className="enter_field">
+            <label htmlFor="accept-terms">Acceto los términos: </label>
+            <input
+              type="checkbox"
+              id="accept-terms"
+              onClick={handleAcceptTerms}
             />
           </div>
         )}

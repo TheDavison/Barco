@@ -6,6 +6,10 @@
 
 }
 
+.enter__title{
+    margin: 20px 0px;
+}
+
 .enter__form{
     width: 30%;
     height:30%;
@@ -19,6 +23,10 @@
 
 .enter__field{
     margin-bottom: 15px;
+}
+
+.enter__input{
+    padding: 0px 10px;
 }
 
 .enter__input, .enter__button{
@@ -44,6 +52,7 @@
     border-bottom: 1px solid #F2F2F2;
     border-left: 1px solid #0000D6;
     cursor:pointer;
+    margin-top: 10px;
 }   
 
 .enter__cambiar{
@@ -61,4 +70,11 @@
 
 .form__active{
     box-shadow: -1px 1px 15px 4px #0000D6;
+}
+
+@media screen and (min-width: 2200px) {
+    .enter__form{
+        width: 15%;
+        height:15%;
+    }
 }
