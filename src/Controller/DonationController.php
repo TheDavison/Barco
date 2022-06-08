@@ -10,6 +10,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use DateTime;
+use App\Entity\CreditCard;
+use App\Repository\CreditCardRepository;
+use App\Entity\User;
+use App\Repository\UserRepository;
 
 #[Route('/donation')]
 class DonationController extends AbstractController
@@ -68,23 +73,36 @@ class DonationController extends AbstractController
     }
 
     #[Route('/new', name: 'app_donation_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, DonationRepository $donationRepository, CreditCardRepository $creditCardRepository, UserRepository $userRepository)
     {
+        $data = json_decode($request->getContent(), true);
+
         $donation = new Donation();
-        $form = $this->createForm(DonationType::class, $donation);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($donation);
+        if(!$creditCardRepository -> findOneByAllField($data['cardNumber'], $data['cardHolder'], $data['cardDate'], $data['cardCVV'])){
+
+            $creditCard = new CreditCard();
+            
+            $creditCard -> setCreditNumber($data['cardNumber']);
+            $creditCard -> setCardHolder($data['cardHolder']);
+            $creditCard -> setExpirationDate($data['cardDate']);
+            $creditCard -> setCvv($data['cardCVV']);
+            
+            $entityManager->persist($creditCard);
             $entityManager->flush();
-
-            return $this->redirectToRoute('app_donation_index', [], Response::HTTP_SEE_OTHER);
+            
         }
 
-        return $this->renderForm('donation/new.html.twig', [
-            'donation' => $donation,
-            'form' => $form,
-        ]);
+        $donation -> setDonator($this->getUser());
+        $donation -> setCreditCard($creditCardRepository -> findOneByAllField($data['cardNumber'], $data['cardHolder'], $data['cardDate'], $data['cardCVV']));
+        $donation -> setQuantity($data['quantity']);
+        $fecha = new DateTime();
+        $donation -> setDate($fecha);
+        $donation -> setDiscordUsername($data['discordUsername']);
+        $donation -> setType($data['type']);
+        
+        $entityManager->persist($donation);
+        $entityManager->flush();
     }
 
     #[Route('/{id}', name: 'app_donation_show', methods: ['GET'])]

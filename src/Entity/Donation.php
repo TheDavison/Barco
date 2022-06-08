@@ -27,6 +27,12 @@ class Donation
     #[ORM\Column(type: 'datetime')]
     private $date;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $discordUsername;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $type;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -76,6 +82,30 @@ class Donation
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getDiscordUsername(): ?string
+    {
+        return $this->discordUsername;
+    }
+
+    public function setDiscordUsername(string $discordUsername): self
+    {
+        $this->discordUsername = $discordUsername;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }

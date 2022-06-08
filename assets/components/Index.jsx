@@ -16,7 +16,9 @@ const Index = ({ currentUser }) => {
           
         </div>
         <div className="index__donators">
-          <div className="index__donador index__donador-1">Donador 1</div>
+          <div className="index__donador index__donador-1">
+            Donador 1
+          </div>
           <div className="index__donador index__donador-2">Donador 2</div>
           <div className="index__donador index__donador-3">Donador 3</div>
         </div>
