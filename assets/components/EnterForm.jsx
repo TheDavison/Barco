@@ -21,7 +21,6 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
 
   const handleAcceptTerms = () => {
     setTerms(!terms);
-    setError("");
   };
 
   const handleChange = (e) => {
@@ -38,16 +37,28 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
   };
 
   const checkInputs = () => {
+    let mayContinue = false;
+
+    if (inputUsername.trim().length > 0 && inputPass.trim().length > 0) {
+      mayContinue = true;
+    }
+
+    return mayContinue;
+  };
+
+  const checkInputsRegister = () => {
     let mayContinue = true;
 
     expresion = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}/gm;
     if (!expresion.test(inputPass)) {
       mayContinue = false;
+      setError("Contraseña entre 8 y 15 caracteres, dígitos y mayúculas.");
     }
 
     expresion = /(?=.*[a-z]).{3,}/gm;
     if (!expresion.test(inputUsername)) {
       mayContinue = false;
+      setError("Nombre de usuario mínimo 3 caracteres.");
     }
 
     return mayContinue;
@@ -65,7 +76,7 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
   //------------Métodos de register------------
 
   const handleRegister = async () => {
-    if (checkInputs()) {
+    if (checkInputsRegister()) {
       let usernameExists = await checkUsername();
       if (terms) {
         if (!usernameExists) {
@@ -84,8 +95,6 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
       } else {
         setError("Acepte los términos antes de continuar.");
       }
-    } else {
-      setError("Rellene todos los campos por favor.");
     }
   };
 
