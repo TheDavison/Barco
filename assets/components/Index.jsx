@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Camera } from "react-camera-pro";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import "../styles/Index.css";
+import bricoADD from "../img/bricodepotADD.jpg";
 import axios from "axios";
 
 const Index = ({ currentUser }) => {
@@ -27,7 +28,11 @@ const Index = ({ currentUser }) => {
   console.log(donators[0]?.donator);
   return (
     <div className="index__container">
-      <aside className="index__add">Aqui irá un anuncio</aside>
+      <aside className="index__add">
+        <a href="https://www.bricodepot.es/">
+          <img src={bricoADD} alt="publicidad de bricodepot" />
+        </a>
+      </aside>
 
       <div className="index__main">
         <div className="index__cam">
@@ -55,12 +60,18 @@ const Index = ({ currentUser }) => {
             </div>
           </div>
           <div>
-            <Link to={"/donar"}><div className="donators-button">Donar</div></Link>
+            <Link to={"/donar"}>
+              <div className="donators-button">Donar</div>
+            </Link>
           </div>
         </div>
       </div>
 
-      <aside className="index__add">Aqui irá un anuncio</aside>
+      <aside className="index__add">
+        <a href="https://www.bricodepot.es/">
+          <img src={bricoADD} alt="publicidad de bricodepot" />
+        </a>
+      </aside>
     </div>
   );
 };
