@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import "../styles/DonationForm.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const DonationForm = () => {
   const [type, setType] = useState("MasterCard");
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   const [cardNumber, setCardNumber] = useState("");
   const [cardHolder, setCardHolder] = useState("");
   const [cardDate, setCardDate] = useState("");
   const [cardCVV, setCardCVV] = useState("");
   const [discordUsername, setDiscordUsername] = useState("");
+
+  let navigate = useNavigate();
 
   let expresion = new RegExp();
   //--------------------------------------------------------------------------
@@ -57,15 +60,26 @@ const DonationForm = () => {
   //   expresion = //;
   // }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // checkInputs();
 
-    addDonation();
+    let donatedSuccesfully = await addDonation();
+
+    if(donatedSuccesfully){
+      setQuantity(1);
+      setCardNumber("");
+      setCardHolder("");
+      setCardDate("");
+      setCardCVV("");
+      setDiscordUsername("");
+      navigate("/", { replace: true });
+    }
   };
 
-  const addDonation = () => {
-    axios
+  const addDonation = async () => {
+    let haveDonated = false;
+    await axios
       .post("/donation/new", {
         type: type,
         quantity: quantity,
@@ -75,10 +89,11 @@ const DonationForm = () => {
         cardCVV: cardCVV,
         discordUsername: discordUsername,
       })
-      .then(console.log("Todo OK"))
+      .then(haveDonated = true)
       .catch((error) => {
         console.log(error);
       });
+    return haveDonated;
   };
 
   return (
@@ -196,7 +211,7 @@ const DonationForm = () => {
               </div>
 
               <div className="form-button">
-                <p onClick={handleSubmit}>Donar</p> 
+                <p onClick={handleSubmit}>Donar</p>
               </div>
             </form>
           </div>

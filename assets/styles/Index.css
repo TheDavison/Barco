@@ -41,42 +41,69 @@
 }
 
 .index__donators{
-    margin-top: 20px;
-    height: 70%;
+    margin-top: 100px;
     display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
-    width: 100%;
+    width: 70%;
+    justify-content: space-around;
+}
+
+.index__donators-podium{
+    display: flex;
+    flex-direction: row;
+    align-content: flex-end;
+    align-items: flex-end;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
+.podium-position{
+    width: fit-content;
+    min-width: 110px;
+    max-width: 200px;
 }
 
 .index__donador{
-    /* border: 1px solid black; */
-    border-radius: 5px;
-    width: 50%;
-    margin-top: 2%;
+    color: #222226;
 }
 
 .index__donador-1{
     background-color:gold;
-    flex: 3;
+   padding: 80px 10px 35px 10px;
 }
 
 .index__donador-2{
     background-color: silver;
-    flex: 2
+  padding: 45px 10px 35px 10px;
 } 
 
 .index__donador-3{
     background-color: #CD7F32;
-    flex: 1;
+    padding: 25px 10px 35px 10px;
 }
+
+.donators-button{
+    text-align: center;
+    width: 70px;
+    height: 20px;
+    font: bold 11px Arial;
+    text-decoration: none;
+    background-color: #0511f2;
+    color: #F2F2F2;
+    padding: 2px 6px 2px 6px;
+    border-top: 1px solid #0000D6;
+    border-right: 1px solid #F2F2F2;
+    border-bottom: 1px solid #F2F2F2;
+    border-left: 1px solid #0000D6;
+    border-radius: 5px;
+}
+
 aside{
     color: #F2F2F2;
 }
-.index__container div{
-    color: #F2F2F2;
-}
+
 @media only screen and (max-width: 600px) {
     .index__cam{
         box-shadow: 0px 0px 0px 0px #f2f2f2;
