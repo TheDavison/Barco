@@ -23,7 +23,7 @@
     box-shadow: -9px 20px 29px 6px #f2f2f2;
 }
 .aboutUs__content{
-    width: 100%;
+    width: 75%;
     height: 100px;
 display: flex;
 flex-flow: column;
@@ -35,4 +35,10 @@ font-size: large;
 
 .aboutUs__content p{
     color: #F2F2F2;
+}
+
+@media only screen and (max-width: 600px) {
+    .aboutUs__content{
+        font-size: x-small;
+    }
 }
