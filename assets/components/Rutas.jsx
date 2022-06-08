@@ -7,12 +7,13 @@ import Donations from './Donations';
 import Index from './Index';
 import Layout from './Layout';
 import EnterForm from './EnterForm';
+import DonationForm from './DonationForm';
 
 import Users from './Users';
 import Cookies from './Cookies';
 
 const Rutas = () => {
-    const [currentUser,setCurrentUser ] = useState(null);
+    const [currentUser, setCurrentUser ] = useState(null);
     
     useEffect(()=>{
         setCurrentUser(localStorage.getItem('currentUser'));
@@ -29,6 +30,7 @@ const Rutas = () => {
             <Routes>
                 <Route path="/" element={<Layout setCurrentUser ={setCurrentUser} currentUser={currentUser} handleBorrar={handleBorrar} />}>
                     <Route index path="" element={<Index currentUser={currentUser}/>}></Route>
+                    <Route path="donar" element={<DonationForm />}></Route>
                     <Route path="login" element={<EnterForm setCurrentUser ={setCurrentUser} currentUser={currentUser}/>}></Route>
                     <Route path="aboutUs" element={<AboutUs />}></Route>
                     <Route path="cookies" element={<Cookies />}></Route>

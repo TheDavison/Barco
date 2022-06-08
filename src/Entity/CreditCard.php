@@ -19,11 +19,11 @@ class CreditCard
     #[ORM\Column(type: 'string', length: 255)]
     private $cardHolder;
 
-    #[ORM\Column(type: 'datetime')]
-    private $expirationDate;
-
     #[ORM\Column(type: 'string', length: 255)]
     private $cvv;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $expirationDate;
 
     public function getId(): ?int
     {
@@ -54,17 +54,7 @@ class CreditCard
         return $this;
     }
 
-    public function getExpirationDate(): ?\DateTimeInterface
-    {
-        return $this->expirationDate;
-    }
 
-    public function setExpirationDate(\DateTimeInterface $expirationDate): self
-    {
-        $this->expirationDate = $expirationDate;
-
-        return $this;
-    }
 
     public function getCvv(): ?string
     {
@@ -74,6 +64,18 @@ class CreditCard
     public function setCvv(string $cvv): self
     {
         $this->cvv = $cvv;
+
+        return $this;
+    }
+
+    public function getExpirationDate(): ?string
+    {
+        return $this->expirationDate;
+    }
+
+    public function setExpirationDate(string $expirationDate): self
+    {
+        $this->expirationDate = $expirationDate;
 
         return $this;
     }

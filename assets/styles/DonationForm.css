@@ -1,0 +1,50 @@
+
+.donation-form__container{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    /* width:100%; */
+    /* background-color: #222226; */
+    /* border: 1px solid black; */
+}
+
+.donation-form__add{
+    flex: 1;
+    border: 1px solid #F2F2F2;
+}
+
+.donation-form__main{
+    flex: 8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.donation-form__window {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-evenly;
+    border: 1px solid white;
+    width: 70%;
+    margin-top: 80px;
+}
+
+.donation-form__payment-methods {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form-button {
+    text-align: right;
+}

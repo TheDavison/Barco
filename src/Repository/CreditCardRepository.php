@@ -47,6 +47,33 @@ class CreditCardRepository extends ServiceEntityRepository
         }
     }
 
+    public function findOneByNumber($number): ?CreditCard
+   {
+       return $this->createQueryBuilder('c')
+           ->andWhere('c.creditNumber = :number')
+           ->setParameter('number', $number)
+           ->getQuery()
+           ->getOneOrNullResult()
+       ;
+   }
+
+    public function findOneByAllField($number, $holder, $expire, $cvv): ?CreditCard
+    {
+        return $this->createQueryBuilder('c')
+        ->andWhere('c.creditNumber = :number')
+        ->andWhere('c.cardHolder = :holder')
+        ->andWhere('c.expirationDate = :expire')
+        ->andWhere('c.cvv = :cvv')
+        ->setParameter('number', $number)
+        ->setParameter('holder', $holder)
+        ->setParameter('expire', $expire)
+        ->setParameter('cvv', $cvv)
+        ->getQuery()
+        ->getOneOrNullResult()
+        ;
+    }
+
+
 //    /**
 //     * @return CreditCard[] Returns an array of CreditCard objects
 //     */
