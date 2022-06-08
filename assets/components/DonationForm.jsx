@@ -196,7 +196,7 @@ const DonationForm = () => {
               </div>
 
               <div className="form-button">
-                <input type="submit" value="Donar" />
+                <p onClick={handleSubmit}>Donar</p> 
               </div>
             </form>
           </div>

@@ -27,3 +27,13 @@
         height: auto;
         padding: 15px;
 }
+
+@media only screen and (max-width: 600px) {
+        .cookies__container{
+            overflow-y: scroll;
+        }
+        .cookies__section{
+                font-size:small;
+                overflow-y: scroll;
+        }
+    }

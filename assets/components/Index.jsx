@@ -1,7 +1,10 @@
-import React from "react";
+import React, {useState,useRef} from "react";
+import { Camera } from "react-camera-pro";
 import "../styles/Index.css";
 
 const Index = ({ currentUser }) => {
+  const camera = useRef(null);
+  const [image, setImage] = useState(null);
   // console.log(currentUser);
   return (
     <div className="index__container">
@@ -9,7 +12,8 @@ const Index = ({ currentUser }) => {
 
       <div className="index__main">
         <div className="index__cam">
-          Aquí irá la retransimisión de la cámara
+          <Camera ref={camera}  aspectRatio={16 / 9}/>
+          
         </div>
         <div className="index__donators">
           <div className="index__donador index__donador-1">

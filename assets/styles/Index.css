@@ -21,6 +21,7 @@
 .index__add{
     flex: 1;
     border: 1px solid #F2F2F2;
+    box-shadow: -9px 0px 29px 0px #f2f2f2;
 }
 
 .index__main{
@@ -36,6 +37,7 @@
     width: 80%;
     height: 50%;
     border: 1px solid #F2F2F2;
+    box-shadow: -9px 0px 29px 0px #f2f2f2;
 }
 
 .index__donators{
@@ -74,4 +76,12 @@ aside{
 }
 .index__container div{
     color: #F2F2F2;
+}
+@media only screen and (max-width: 600px) {
+    .index__cam{
+        box-shadow: 0px 0px 0px 0px #f2f2f2;
+    }
+    .index__add{
+        box-shadow: 0px 0px 0px 0px #f2f2f2;
+    }
 }
