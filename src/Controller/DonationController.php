@@ -78,9 +78,13 @@ class DonationController extends AbstractController
         $data = json_decode($request->getContent(), true);
 
         $donation = new Donation();
+        $creditCard;
+        $nuevaCreditCard = false;
 
-        if(!$creditCardRepository -> findOneByAllField($data['cardNumber'], $data['cardHolder'], $data['cardDate'], $data['cardCVV'])){
-
+        if($creditCardRepository -> findOneByAllField($data['cardNumber'], $data['cardHolder'], $data['cardDate'], $data['cardCVV'])){
+            $donation -> setCreditCard($creditCardRepository -> findOneByAllField($data['cardNumber'], $data['cardHolder'], $data['cardDate'], $data['cardCVV']));
+        }else{
+            $nuevaCreditCard = true;
             $creditCard = new CreditCard();
             
             $creditCard -> setCreditNumber($data['cardNumber']);
@@ -88,21 +92,25 @@ class DonationController extends AbstractController
             $creditCard -> setExpirationDate($data['cardDate']);
             $creditCard -> setCvv($data['cardCVV']);
             
-            $entityManager->persist($creditCard);
-            $entityManager->flush();
+            $donation -> setCreditCard($creditCard);
             
         }
 
         $donation -> setDonator($this->getUser());
-        $donation -> setCreditCard($creditCardRepository -> findOneByAllField($data['cardNumber'], $data['cardHolder'], $data['cardDate'], $data['cardCVV']));
+        
         $donation -> setQuantity($data['quantity']);
         $fecha = new DateTime();
         $donation -> setDate($fecha);
         $donation -> setDiscordUsername($data['discordUsername']);
         $donation -> setType($data['type']);
         
+        if($nuevaCreditCard){
+            $entityManager->persist($creditCard);
+        }
         $entityManager->persist($donation);
         $entityManager->flush();
+
+        return Response::HTTP_OK;
     }
 
     #[Route('/{id}', name: 'app_donation_show', methods: ['GET'])]
