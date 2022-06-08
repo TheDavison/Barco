@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../styles/DonationForm.css";
 import axios from "axios";
+import bricoADD from '../img/bricodepotADD.jpg';
 
 const DonationForm = () => {
   const [type, setType] = useState("MasterCard");
@@ -83,7 +84,9 @@ const DonationForm = () => {
 
   return (
     <div className="donation-form__container">
-      <aside className="donation-form__add">Aqui irá un anuncio</aside>
+      <aside className="donation-form__add">
+        <a href="https://www.bricodepot.es/"><img src={bricoADD} alt="publicidad de bricodepot"/></a>
+      </aside>
 
       <div className="donation-form__main">
         <div className="donation-form__window">
@@ -203,7 +206,9 @@ const DonationForm = () => {
         </div>
       </div>
 
-      <aside className="donation-form__add">Aqui irá un anuncio</aside>
+      <aside className="donation-form__add">
+        <a href="https://www.bricodepot.es/"><img src={bricoADD} alt="publicidad de bricodepot"/></a>
+      </aside>
     </div>
   );
 };
