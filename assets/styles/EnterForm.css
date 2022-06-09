@@ -74,9 +74,10 @@
     box-shadow: -1px 1px 15px 4px #0000D6;
 }
 
-@media screen and (min-width: 2200px) {
+@media only screen and (max-width: 600px) {
     .enter__form{
-        width: 15%;
-        height:15%;
+        /* width: 15%; */
+        
+        width: 73%;
     }
 }
