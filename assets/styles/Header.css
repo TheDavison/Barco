@@ -74,6 +74,9 @@ header p{
     border-left: 1px solid #0000D6;
     border-radius: 5px;
 }
+.hader__nav__button:hover{
+    transform: translateY(-0.25em);
+}
 .hader__nav__button a{
     color: #F2F2F2;
     text-decoration: none;

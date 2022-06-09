@@ -39,3 +39,6 @@
     border-left: 1px solid #0000D6;
     border-radius: 5px;
 }
+.admin__nav__button:hover{
+    transform: translateY(-0.25em);
+}

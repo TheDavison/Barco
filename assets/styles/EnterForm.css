@@ -56,6 +56,11 @@
     cursor:pointer;
     margin-top: 10px;
 }   
+.enter__button:hover{
+    /* animation: pulse 1s;
+     */
+     transform: translateY(-0.25em);
+}
 
 .enter__cambiar{
     margin: 10px 10px 0px 10px;
@@ -68,11 +73,17 @@
     border-radius: 8px;
     padding: 3px;
     cursor:pointer;
+    
+}
+.enter__cambiar:hover{
+    transform: translateY(-0.25em);
 }
 
 .form__active{
     box-shadow: -1px 1px 15px 4px #0000D6;
 }
+
+
 
 @media only screen and (max-width: 600px) {
     .enter__form{
