@@ -30,7 +30,7 @@ const Rutas = () => {
             <Routes>
                 <Route path="/" element={<Layout setCurrentUser ={setCurrentUser} currentUser={currentUser} handleBorrar={handleBorrar} />}>
                     <Route index path="" element={<Index currentUser={currentUser}/>}></Route>
-                    <Route path="donar" element={<DonationForm />}></Route>
+                    <Route path="donar" element={currentUser ? <DonationForm /> : <Index />}></Route>
                     <Route path="login" element={<EnterForm setCurrentUser ={setCurrentUser} currentUser={currentUser}/>}></Route>
                     <Route path="aboutUs" element={<AboutUs />}></Route>
                     <Route path="cookies" element={<Cookies />}></Route>

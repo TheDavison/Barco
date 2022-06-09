@@ -1,5 +1,6 @@
 .admin__container{
     /* background-color:#222226; */
+    margin-top: 100px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -9,6 +10,7 @@
     flex-direction: column;
 }
 .admin__container nav {
+    margin-top: 30px;
     display: flex;
 }
 .admin__container nav > a:visited{

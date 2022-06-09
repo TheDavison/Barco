@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/DonationForm.css";
 import axios from "axios";
-import bricoADD from "../img/bricodepotADD.jpg";
+// import bricoADD from "../img/bricodepotADD.jpg";
 import { useNavigate } from "react-router-dom";
 
 const DonationForm = () => {
@@ -141,11 +141,11 @@ const DonationForm = () => {
 
   return (
     <div className="donation-form__container">
-      <aside className="donation-form__add">
+      {/* <aside className="donation-form__add">
         <a href="https://www.bricodepot.es/">
           <img src={bricoADD} alt="publicidad de bricodepot" />
         </a>
-      </aside>
+      </aside> */}
 
       <div className="donation-form__main">
         <div className="donation-form__window">
@@ -288,11 +288,11 @@ const DonationForm = () => {
         </div>
       </div>
 
-      <aside className="donation-form__add">
+      {/* <aside className="donation-form__add">
         <a href="https://www.bricodepot.es/">
           <img src={bricoADD} alt="publicidad de bricodepot" />
         </a>
-      </aside>
+      </aside> */}
     </div>
   );
 };

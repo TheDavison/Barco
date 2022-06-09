@@ -2,12 +2,12 @@ import React, { useState, useRef, useEffect } from "react";
 import { Camera } from "react-camera-pro";
 import { Link } from "react-router-dom";
 import "../styles/Index.css";
-import bricoADD from "../img/bricodepotADD.jpg";
+// import bricoADD from "../img/bricodepotADD.jpg";
 import axios from "axios";
 
 const Index = ({ currentUser }) => {
   const camera = useRef(null);
-  const [image, setImage] = useState(null);
+  // const [image, setImage] = useState(null);
   const [donators, setDonators] = useState([]);
 
   const getTopDonators = async () => {
@@ -28,16 +28,17 @@ const Index = ({ currentUser }) => {
   console.log(donators[0]?.donator);
   return (
     <div className="index__container">
-      <aside className="index__add">
+      {/* <aside className="index__add">
         <a href="https://www.bricodepot.es/">
           <img src={bricoADD} alt="publicidad de bricodepot" />
         </a>
-      </aside>
+      </aside> */}
 
       <div className="index__main">
         <div className="index__cam">
           <Camera ref={camera} aspectRatio={16 / 9} />
         </div>
+        <div className="index__donator__container">
         <div className="index__donators">
           <div className="index__donators-podium">
             <div className="podium-position">
@@ -65,13 +66,14 @@ const Index = ({ currentUser }) => {
             </Link>
           </div>
         </div>
+        </div>
       </div>
 
-      <aside className="index__add">
+      {/* <aside className="index__add">
         <a href="https://www.bricodepot.es/">
           <img src={bricoADD} alt="publicidad de bricodepot" />
         </a>
-      </aside>
+      </aside> */}
     </div>
   );
 };
