@@ -25,7 +25,7 @@ const Index = ({ currentUser }) => {
     getTopDonators();
   }, []);
 
-  console.log(donators[0]?.donator);
+  // console.log(donators[0]?.donator);
   return (
     <div className="index__container">
       {/* <aside className="index__add">

@@ -21,6 +21,7 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
 
   const handleAcceptTerms = () => {
     setTerms(!terms);
+    setError("");
   };
 
   const handleChange = (e) => {
@@ -86,6 +87,7 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
             setInputPass("");
             setInputPassRep("");
             setLoging(true);
+            setTerms(false);
           } else {
             setError("Las contraseñas no coinciden.");
           }
@@ -123,9 +125,8 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
         username: inputUsername.trim(),
         password: inputPass.trim(),
       })
-      .then(console.log("Todo ok"))
+      // .then(console.log("Todo ok"))
       .catch((error) => {
-        setError("Ha ocurrido un error, intente de nuevo más tarde por favor.");
       });
   };
 
@@ -159,7 +160,6 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
         mayLogIn = true;
       })
       .catch((error) => {
-        setError("Ha ocurrido un error, intente de nuevo más tarde por favor.");
       });
 
     return mayLogIn;
@@ -244,6 +244,7 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
             <input
               type="checkbox"
               id="accept-terms"
+              checked = {terms}
               onClick={handleAcceptTerms}
             />
           </div>

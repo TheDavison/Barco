@@ -134,7 +134,7 @@ const DonationForm = () => {
       })
       .then((haveDonated = true))
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
     return haveDonated;
   };
