@@ -36,7 +36,7 @@ const Index = ({ currentUser }) => {
 
       <div className="index__main">
         <div className="index__cam">
-          <Camera ref={camera} aspectRatio={16 / 9} />
+          <Camera ref={camera} aspectRatio={20 / 9} />
         </div>
         <div className="index__donator__container">
         <div className="index__donators">
