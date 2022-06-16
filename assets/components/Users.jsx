@@ -20,7 +20,7 @@ const Users = () => {
 
   useEffect(() => {
     getUsuarios();
-    console.log("iniciando app")
+    // console.log("iniciando app")
   }, []);
 
   return (
