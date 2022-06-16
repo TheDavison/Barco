@@ -8,8 +8,8 @@
         height: 100%;
         border: 1px solid black;
      */
-     background-color: #222226;
-    color: #F2F2F2;
+     background-color: #9cdab0;
+    color: black;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,7 +17,7 @@
     height: 100%;
     width: 75%;
     border-left: 1px solid #F2F2F2;
-    box-shadow: -9px 20px 29px 6px #f2f2f2;
+    box-shadow: -9px 20px 29px 6px #1a74d8;
 }
 
 .cookies__section{

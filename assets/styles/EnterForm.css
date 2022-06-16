@@ -20,7 +20,7 @@
     padding: 1vw 0vw 2vw 0vw;
     border: 1px solid #f2f2f2;
     border-radius: 35px;
-    box-shadow: -9px 0px 29px 0px #f2f2f2
+    box-shadow: -9px 0px 29px 0px #1a74d8
 }
 
 .enter__field{
@@ -80,7 +80,7 @@
 }
 
 .form__active{
-    box-shadow: -1px 1px 15px 4px #0000D6;
+    box-shadow: -1px 1px 15px 4px #1a74d8;
 }
 
 

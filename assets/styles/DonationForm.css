@@ -32,6 +32,7 @@
 }
 
 .donation-form__window {
+  color: black;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -39,7 +40,7 @@
   justify-content: space-evenly;
   border: 1px solid #f2f2f2;
 
-  box-shadow: -9px 0px 29px 0px #f2f2f2;
+  box-shadow: -9px 0px 29px 0px #1a74d8;
   width: 70%;
   margin-top: 200px;
 }
@@ -59,7 +60,7 @@
 }
 
 .active-type {
-  box-shadow: 0px 0px 8px 4px #f2f2f2;
+  box-shadow: 0px 0px 8px 4px #1a74d8;
 }
 
 .donation-form__payment-method:nth-child(1) {
@@ -123,10 +124,10 @@
 
 @media only screen and (max-width: 600px) {
   .donation-form__window {
-    box-shadow: 0px 0px 0px 0px #f2f2f2;
+    box-shadow: 0px 0px 0px 0px #1a74d8;
   }
   .donation-form__add {
-    box-shadow: 0px 0px 0px 0px #f2f2f2;
+    box-shadow: 0px 0px 0px 0px #1a74d8;
     border: 0px;
   }
   /* .donation-form__add img {

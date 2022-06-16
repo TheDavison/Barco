@@ -11,6 +11,7 @@ import DonationForm from './DonationForm';
 
 import Users from './Users';
 import Cookies from './Cookies';
+import Inicio from './Inicio';
 
 const Rutas = () => {
     const [currentUser, setCurrentUser ] = useState(null);
@@ -29,7 +30,8 @@ const Rutas = () => {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Layout setCurrentUser ={setCurrentUser} currentUser={currentUser} handleBorrar={handleBorrar} />}>
-                    <Route index path="" element={<Index currentUser={currentUser}/>}></Route>
+                    <Route index path="" element={<Inicio/>}></Route>
+                    <Route path="index" element={<Index currentUser={currentUser}/>}></Route>
                     <Route path="donar" element={currentUser ? <DonationForm /> : <Index />}></Route>
                     <Route path="login" element={<EnterForm setCurrentUser ={setCurrentUser} currentUser={currentUser}/>}></Route>
                     <Route path="aboutUs" element={<AboutUs />}></Route>

@@ -1,0 +1,15 @@
+.inicio__container{
+    height: 100%;
+    width: 75%;
+    border: 1px solid black;
+    color: black;
+    font-size:large;
+    
+
+}
+
+.inicio__section{
+    height: 33%;
+    border: 1px solid black;
+}
+
