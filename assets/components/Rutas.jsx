@@ -8,6 +8,7 @@ import Index from './Index';
 import Layout from './Layout';
 import EnterForm from './EnterForm';
 import DonationForm from './DonationForm';
+import Reservas from './Reservas';
 
 import Users from './Users';
 import Cookies from './Cookies';
@@ -36,6 +37,7 @@ const Rutas = () => {
                     <Route path="login" element={<EnterForm setCurrentUser ={setCurrentUser} currentUser={currentUser}/>}></Route>
                     <Route path="aboutUs" element={<AboutUs />}></Route>
                     <Route path="cookies" element={<Cookies />}></Route>
+                    <Route path="reservar" element={<Reservas />}></Route>
                     <Route path="admin" element={<AdminLayout />}>
                         <Route path="/admin/users" element={<Users />}></Route>
                         <Route path="/admin/donations" element={<Donations/>}></Route>

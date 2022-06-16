@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Turns index{% endblock %}
+
+{% block body %}
+    <h1>Turns index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Hour</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for turn in turns %}
+            <tr>
+                <td>{{ turn.id }}</td>
+                <td>{{ turn.hour }}</td>
+                <td>
+                    <a href="{{ path('app_turns_show', {'id': turn.id}) }}">show</a>
+                    <a href="{{ path('app_turns_edit', {'id': turn.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_turns_new') }}">Create new</a>
+{% endblock %}
