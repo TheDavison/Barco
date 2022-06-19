@@ -1,21 +1,35 @@
 import React from "react";
 import "../styles/Inicio.css";
-// import vd from "../img/videoBarco.mp4";
+// import VideoComponent from "./VideoComponent";
+import ReactPlayer from "react-player";
+// import VideoComponent from "./VideoComponent";
+// import video from '../videos/videoBarco.mp4';
+// import VideoComponent from "./VideoComponent";
 
 const Inicio = () => {
   return (
     <div className={"inicio__container"}>
       <section className="inicio__section">
         <h1>¿Quieres ayudar a tener un lugar más limpio?</h1>
-        <p>Te ofrecemos la posibilidad de reservar unos días para que uses nuestro WallieShip con tus amigos</p>
+        <p>
+          Usa nuestro barco y ayuda a tener unas fuentes más limpias mientras te
+          diviertes manejandolo. Queda con tus amigos y compartirlo para divertiros entre todos.
+        </p>
       </section>
-      {/* <video width="750" height="500" controls >
-      <source src={video} type="video/mp4"/>
-</video> */}
+      <section className="inicio__section inicio__section__video">
+        <ReactPlayer
+          url="https://youtube.com/shorts/1AM2hjGy8-8?feature=share"
+          controls
+          loop
+          mute="true"
+        />
+      </section>
+
       <section className="inicio__section">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis
-        veritatis, quaerat ad odit earum accusantium a. Sint quis porro
-        recusandae?
+        <h2>¿Quieres usarlo?</h2>
+        <p>
+          Reserva ahora el día y la hora que quieras para divertirte con tus amigos.
+        </p>
       </section>
     </div>
   );
