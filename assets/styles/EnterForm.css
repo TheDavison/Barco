@@ -7,13 +7,14 @@
 }
 
 .enter__title{
+    color: black;
     margin: 20px 0px;
 }
 
 .enter__form{
     width: 30%;
     height:30%;
-    background-color: #181818;
+    background-color: #9cdab0;
     text-align: center;
     margin: auto;
     margin-top: 15%;

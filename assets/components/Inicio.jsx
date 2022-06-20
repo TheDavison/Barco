@@ -13,7 +13,7 @@ const Inicio = () => {
         <h1>¿Quieres ayudar a tener un lugar más limpio?</h1>
         <p>
           Usa nuestro barco y ayuda a tener unas fuentes más limpias mientras te
-          diviertes manejandolo. Queda con tus amigos y compartirlo para divertiros entre todos.
+          diviertes manejandolo. Queda con tus amigos y compartelo para divertiros entre todos.
         </p>
       </section>
       <section className="inicio__section inicio__section__video">
