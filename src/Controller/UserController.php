@@ -62,12 +62,12 @@ class UserController extends AbstractController
     {
         $data = json_decode($request->getContent(), true);
         
-        if(!$userRepository -> findOneByUsername($data['username'])){
+        if(!($userRepository -> findOneByUsername($data['username']))){
             $newUser = new User();
-            $newUser -> setUsername($data['username']);
-    
+            $mewUser -> setUsername($data['username']);
+
             $newUser -> setPassword(
-                $userPasswordHasher->hashPassword(
+                $userPasswordHasher -> hashPassword(
                     $newUser,
                     $data['password'],
                 )
