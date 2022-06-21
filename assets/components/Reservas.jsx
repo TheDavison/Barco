@@ -7,7 +7,7 @@ const Reservas = () => {
   const getTurnos = async () => {
     await axios.get("turns/list").then((response) => {
       if (response.data.data) {
-        setTurnos((prev) => [...response.data.data]);
+        setTurnos([...response.data.data]);
       }
     });
   };
@@ -21,12 +21,12 @@ const Reservas = () => {
       <select name="turno" className="">
         <option value="default">Seleccionar Turno</option>
 
-        {/* {turnos.map((turno, key) => {
-          console.log(turno.id, turno.hour, key);
+        {turnos.map((turno, key) => {
+          console.log(turno.hour);
           <option value={turno.id} id={key}>{turno.hour}</option>;
-        })} */}
+        })}
       </select>
-
+{/* 
       <table>
         <thead>
           <tr>
@@ -36,14 +36,19 @@ const Reservas = () => {
 
         <tbody>
           {turnos.map((turno, key) => {
-        console.log(turno);
+            console.log(turno.hour);
             <tr key={key}>
-              <td>{turno.id}</td>
+              <td>{turno.hour}</td>
             </tr>;
-            // <li key={key}>{turno.hour}</li>
           })}
         </tbody>
-      </table>
+      </table> */}
+      
+      {/* <ul>
+        {turnos.map((turno, key) => {
+          <li key={key}>{turno.hour}</li>;
+        })}
+      </ul> */}
     </div>
   );
 };

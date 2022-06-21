@@ -78,21 +78,11 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
 
   const handleRegister = async () => {
     if (checkInputsRegister()) {
-      let usernameExists = await checkUsername();
       if (terms) {
-        if (!usernameExists) {
-          if (inputPass === inputPassRep) {
-            addUser();
-            setInputUsername("");
-            setInputPass("");
-            setInputPassRep("");
-            setLoging(true);
-            setTerms(false);
-          } else {
-            setError("Las contraseñas no coinciden.");
-          }
+        if (inputPass === inputPassRep) {
+          addUser();
         } else {
-          setError("Ese nombre de usuario ya existe.");
+          setError("Las contraseñas no coinciden.");
         }
       } else {
         setError("Acepte los términos antes de continuar.");
@@ -125,11 +115,16 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
         username: inputUsername.trim(),
         password: inputPass.trim(),
       })
-      .then(() => {
-        console.log(inputUsername, inputPass)
+      .then((response) => {
+        console.log(response);
+        setInputUsername("");
+        setInputPass("");
+        setInputPassRep("");
+        setLoging(true);
+        setTerms(false);
       })
       .catch((error) => {
-        console.log(error);
+        setError("Ese nombre de usuario ya existe.");
       });
   };
 
@@ -248,7 +243,7 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
             <input
               type="checkbox"
               id="accept-terms"
-              checked = {terms}
+              checked={terms}
               onChange={handleAcceptTerms}
             />
           </div>

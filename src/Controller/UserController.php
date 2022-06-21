@@ -69,14 +69,17 @@ class UserController extends AbstractController
             $newUser -> setPassword(
                 $userPasswordHasher -> hashPassword(
                     $newUser,
-                    $data['password'],
+                    $data['password']
                 )
             );
         
             $entityManager->persist($newUser);
             $entityManager->flush();
         }
-        return $this->json(RESPONSE::HTTP_OK);
+
+        return $this->json(Response::HTTP_OK);
+
+        // return $this->json(RESPONSE::HTTP_OK);
     }
 
 
