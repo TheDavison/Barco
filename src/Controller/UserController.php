@@ -76,9 +76,7 @@ class UserController extends AbstractController
             $entityManager->persist($newUser);
             $entityManager->flush();
         }
-
-        return $this->json(Response::HTTP_OK);
-
+        return $this->json(RESPONSE::HTTP_OK);
     }
 
 
