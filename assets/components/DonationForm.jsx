@@ -84,7 +84,7 @@ const DonationForm = () => {
       setError("Número de tarjeta errónea.");
     }
 
-    expresion = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/;
+    expresion = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%^&*(){}|~<>;:[\]]{2,}$/;
     if (!expresion.test(cardHolder)) {
       mayContinue = false;
       setError("Nombre erróneo.");
@@ -103,7 +103,7 @@ const DonationForm = () => {
     }
 
     expresion = /^([a-zA-Z0-9]{2,32})#(\d{4})$/gm;
-    if(discordUsername.trim().length > 0){
+    if(!discordUsername.trim().length <= 0){
       if (!expresion.test(discordUsername)) {
         mayContinue = false;
         setError("No ha escrito bien su id de discord.");
@@ -134,7 +134,7 @@ const DonationForm = () => {
       })
       .then((haveDonated = true))
       .catch((error) => {
-        // console.log(error);
+        console.log(error);
       });
     return haveDonated;
   };

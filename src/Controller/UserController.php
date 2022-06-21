@@ -33,6 +33,7 @@ class UserController extends AbstractController
         if ($this->getUser()) {
             return $this->json($this->getUser(), Response::HTTP_OK, []);
         } 
+
     }
 
     #[Route('/list', name: 'list_users', methods: ['GET'])]
@@ -68,9 +69,9 @@ class UserController extends AbstractController
             $newUser -> setPassword(
                 $userPasswordHasher->hashPassword(
                     $newUser,
-                        $data['password'],
-                    )
-                );
+                    $data['password'],
+                )
+            );
         
             $entityManager->persist($newUser);
             $entityManager->flush();

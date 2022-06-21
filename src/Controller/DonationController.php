@@ -110,7 +110,7 @@ class DonationController extends AbstractController
         $entityManager->persist($donation);
         $entityManager->flush();
 
-        return Response::HTTP_OK;
+        return $this->json(Response::HTTP_OK);
     }
 
     #[Route('/{id}', name: 'app_donation_show', methods: ['GET'])]
