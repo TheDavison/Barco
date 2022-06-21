@@ -33,6 +33,7 @@ class UserController extends AbstractController
         if ($this->getUser()) {
             return $this->json($this->getUser(), Response::HTTP_OK, []);
         } 
+
     }
 
     #[Route('/list', name: 'list_users', methods: ['GET'])]
@@ -61,20 +62,23 @@ class UserController extends AbstractController
     {
         $data = json_decode($request->getContent(), true);
         
-        if(!$userRepository -> findOneByUsername($data['username'])){
+        if(!($userRepository -> findOneByUsername($data['username']))){
             $newUser = new User();
-            $newUser -> setUsername($data['username']);
-    
+            $mewUser -> setUsername($data['username']);
+
             $newUser -> setPassword(
-                $userPasswordHasher->hashPassword(
+                $userPasswordHasher -> hashPassword(
                     $newUser,
-                        $data['password'],
-                    )
-                );
+                    $data['password']
+                )
+            );
         
             $entityManager->persist($newUser);
             $entityManager->flush();
         }
+
+        return $this->json(Response::HTTP_OK);
+
     }
 
 

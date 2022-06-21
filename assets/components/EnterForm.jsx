@@ -125,8 +125,11 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
         username: inputUsername.trim(),
         password: inputPass.trim(),
       })
-      // .then(console.log("Todo ok"))
+      .then(() => {
+        console.log(inputUsername, inputPass)
+      })
       .catch((error) => {
+        console.log(error);
       });
   };
 
@@ -160,6 +163,7 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
         mayLogIn = true;
       })
       .catch((error) => {
+        console.log(error);
       });
 
     return mayLogIn;
@@ -245,7 +249,7 @@ const EnterForm = ({ setCurrentUser, currentUser }) => {
               type="checkbox"
               id="accept-terms"
               checked = {terms}
-              onClick={handleAcceptTerms}
+              onChange={handleAcceptTerms}
             />
           </div>
         )}
