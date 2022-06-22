@@ -13,7 +13,8 @@ import Reservas from './Reservas';
 import Users from './Users';
 import Cookies from './Cookies';
 import Inicio from './Inicio';
-import Bookings from './Bookings';
+import AdminBookings from './AdminBookings';
+import axios from 'axios';
 
 const Rutas = () => {
     const [currentUser, setCurrentUser ] = useState(null);
@@ -26,6 +27,7 @@ const Rutas = () => {
         localStorage.removeItem('currentUser');
         localStorage.removeItem('currentRole');
         setCurrentUser('');
+        axios.post('/logout').then(console.log('he salido'));
     }
 
     return (
@@ -44,7 +46,7 @@ const Rutas = () => {
                         <Route path="/admin/donations" element={<Donations/>}></Route>
                         {/* <Route path="/admin/reservas" element={<Bookings/>}></Route> */}
                     </Route>
-                    <Route path="reservas" element={<Bookings/>}></Route>
+                    <Route path="reservas" element={<AdminBookings/>}></Route>
                     {/* <Route path="register" element={<Register />}></Route> */}
                 </Route>
             </Routes>
