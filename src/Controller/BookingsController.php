@@ -26,7 +26,7 @@ class BookingsController extends AbstractController
             'bookings' => $bookings,
         ]);
     }
-    #[Route('/list', name: 'app_turns_index', methods: ['GET'])]
+    #[Route('/list', name: 'list_bookings', methods: ['GET'])]
     public function list(BookingsRepository $bookingsRepository): Response
     {
         $reservas = $bookingsRepository ->findAll();
@@ -36,7 +36,7 @@ class BookingsController extends AbstractController
         foreach ($reservas as $reserva) {
             $arrayReservas [$reserva->getId()]['id'] = $reserva->getId();
             $arrayReservas [$reserva->getId()]['booker'] = $reserva->getBooker()->getUsername();
-            $arrayReservas [$reserva->getId()]['turn'] = $reserva->getTurn();
+            $arrayReservas [$reserva->getId()]['turn'] = $reserva->getTurn()->getHour();
             $arrayReservas [$reserva->getId()]['date'] = $reserva->getDate()->format("d/m/Y - H:i");
         }
 

@@ -1,5 +1,5 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 
 const AdminBookings = () => {
     const [bookings, setBookings] = useState([])
@@ -7,6 +7,7 @@ const AdminBookings = () => {
     let getBookings = () => {
       axios.get("/bookings/list").then((response) => {
         if (response.data.data) {
+          console.log('datos',response.data.data);
           for (let booking in response.data.data) {
             let { id, turn, date } = response.data.data[booking];
             let { booker } = response.data.data[booking];
