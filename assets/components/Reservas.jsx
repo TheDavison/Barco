@@ -14,7 +14,22 @@ const Reservas = () => {
         fecha: fecha,
       })
       .then((response) => {
-        response.data.data ? setTurnos(response.data.data) : setTurnos([]);
+        // let {id, hour, booked } = response.data.data;
+        // let nextTurn = {id,hour,booked};
+        // let data = response.data.data;
+        // console.log('response data',data);
+        // response.data.data ? setTurnos((prev)=>[...prev,response.data.data]) : setTurnos([]);
+         if(response.data.data){
+            for (let t in response.data.data) {
+            let { id, hour, booked } = response.data.data[t];
+            
+            let nextTurn = { id, hour, booked };
+            setTurnos((prev)=>[...prev,nextTurn]);
+
+            
+          }
+      }
+        
       })
       .catch((error) => {})
       .finally(() => {
@@ -48,6 +63,7 @@ const Reservas = () => {
 
   useEffect(() => {
     fecha != "" ? getTurnos() : "";
+    // console.log('turnos',turnos);
   }, [fecha]);
 
   return (
@@ -60,18 +76,18 @@ const Reservas = () => {
       {mostrar != "" ? (
         <select name="turno" className="" onChange={handleTurno}>
           <option value="default">Seleccionar Turno</option>
-
-          {console.log(turnos)}
+          {/* {turnos.map(turno=>console.log('Turnos',turnos))} */}
+          {turnos.map(turno=>console.log('Turno hora2',turno.hour))}
+          {/* {turnos.map(turno=>console.log('Turno hora',turno[1].hour))} */}
+          {/* {turnos.map((turno,key)=>(
+            <option value={turno.id} key={key+1}>{turno}</option>
+          ))} */}
+          
           {turnos.map((turno, key) => (
-            <option value={turno.id} key={key+1}>
-              {turno.hour}
-            </option>
-          ))}
-          {/* {turnos.map((turno, key) => (
             <option value={turno.id} key={key + 1}>
               {turno.hour}
             </option>
-          ))} */}
+          ))}
         </select>
       ) : (
         <p>El dia seleccionado no es válido</p>
