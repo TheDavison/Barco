@@ -44,9 +44,9 @@ const Rutas = () => {
                     <Route path="admin" element={<AdminLayout />}>
                         <Route path="/admin/users" element={<Users />}></Route>
                         <Route path="/admin/donations" element={<Donations/>}></Route>
-                        {/* <Route path="/admin/reservas" element={<Bookings/>}></Route> */}
+                        <Route path="/admin/reservas" element={<AdminBookings/>}></Route>
                     </Route>
-                    <Route path="reservas" element={<AdminBookings/>}></Route>
+                    {/* <Route path="reservas" element={<AdminBookings/>}></Route> */}
                     {/* <Route path="register" element={<Register />}></Route> */}
                 </Route>
             </Routes>

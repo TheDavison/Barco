@@ -47,6 +47,17 @@ class BookingsRepository extends ServiceEntityRepository
         }
     }
 
+    public function findByDate($date): array
+    {
+        return $this->createQueryBuilder('b')
+            ->andWhere('b.date LIKE :val')
+            ->setParameter('val', $date.'%')
+            ->orderBy('b.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return Bookings[] Returns an array of Bookings objects
 //     */

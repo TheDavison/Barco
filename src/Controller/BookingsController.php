@@ -37,7 +37,7 @@ class BookingsController extends AbstractController
             $arrayReservas [$reserva->getId()]['id'] = $reserva->getId();
             $arrayReservas [$reserva->getId()]['booker'] = $reserva->getBooker()->getUsername();
             $arrayReservas [$reserva->getId()]['turn'] = $reserva->getTurn()->getHour();
-            $arrayReservas [$reserva->getId()]['date'] = $reserva->getDate()->format("d/m/Y - H:i");
+            $arrayReservas [$reserva->getId()]['date'] = $reserva->getDate()->format("d/m/Y");
         }
 
 

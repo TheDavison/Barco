@@ -64,7 +64,7 @@ class UserController extends AbstractController
         
         if(!($userRepository -> findOneByUsername($data['username']))){
             $newUser = new User();
-            $mewUser -> setUsername($data['username']);
+            $newUser -> setUsername($data['username']);
 
             $newUser -> setPassword(
                 $userPasswordHasher -> hashPassword(

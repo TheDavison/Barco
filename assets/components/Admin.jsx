@@ -9,6 +9,7 @@ const Admin = () => {
         <nav>
             <Link to={"./users"}><div className='admin__nav__button'>Usuarios</div></Link>
             <Link to={"./donations"}><div className='admin__nav__button'>Donaciones</div></Link>
+            <Link to={"./reservas"}><div className='admin__nav__button'>Reservas</div></Link>
         </nav>
     </div>
   )

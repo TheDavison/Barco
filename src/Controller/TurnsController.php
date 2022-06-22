@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Turns;
 use App\Form\TurnsType;
 use App\Repository\TurnsRepository;
+use App\Entity\Bookings;
+use App\Repository\BookingsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,15 +15,35 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/turns')]
 class TurnsController extends AbstractController
 {
-    #[Route('/list', name: 'app_turns_index', methods: ['GET'])]
-    public function list(TurnsRepository $turnsRepository): Response
+    #[Route('/list', name: 'app_turns_index', methods: ['GET', 'POST'])]
+    public function list(Request $request, TurnsRepository $turnsRepository, BookingsRepository $bookingsRepository): Response
     {
+        $data = json_decode($request->getContent(), true);
+
         $turns = $turnsRepository -> findAll();
+        $booking = $bookingsRepository -> findByDate($data['fecha']);
+        $returnTurns = [];
+        $bookedTurns = [];
+
+        foreach($booking as $book){
+            array_push($bookedTurns, $book -> getTurn() -> getId());
+        }
+
+        foreach($turns as $turn){
+            $returnTurns[$turn -> getId()]['id'] = $turn -> getId();
+            $returnTurns[$turn -> getId()]['hour'] = $turn -> getHour();
+
+            if(in_array($turn -> getId(), $bookedTurns)){
+                $returnTurns[$turn -> getId()]['booked'] = true;
+            }else{
+                $returnTurns[$turn -> getId()]['booked'] = false;
+            }
+        }
 
         return $this->json([
             'success' => true,
-            'data' => $turns,
-        ]);
+            'data' => $returnTurns,
+        ], Response::HTTP_OK);
     }
 
     // #[Route('/new', name: 'app_turns_new', methods: ['GET', 'POST'])]

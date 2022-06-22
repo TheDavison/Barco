@@ -3,58 +3,79 @@ import axios from "axios";
 
 const Reservas = () => {
   const [turnos, setTurnos] = useState([]);
+  const [groupSize, setGroupSize] = useState(1);
+  const [fecha, setFecha] = useState("");
+  const [mostrar, setMostrar] = useState(false);
 
   const getTurnos = async () => {
-    await axios.get("turns/list").then((response) => {
-      if (response.data.data) {
-        // console.log("response data",response.data.data);
-        let data = response.data.data;
-        // console.log("data",data)  ;
-        setTurnos(data);
-      }
-
-      
-    });
+    setTurnos([]);
+    await axios
+      .post("turns/list", {
+        fecha: fecha,
+      })
+      .then((response) => {
+        response.data.data ? setTurnos(response.data.data) : setTurnos([]);
+      })
+      .catch((error) => {})
+      .finally(() => {
+        setMostrar(true);
+      });
   };
-  // console.log("turnos:", turnos);
+
+  const handleGroupSize = (e) => {
+    if (e.target.value >= 1) {
+      setGroupSize(parseInt(e.target.value));
+    }
+  };
+
+  const handleFecha = (e) => {
+    setMostrar(false);
+    let fecha = new Date();
+    let fechaEleccion = new Date(e.target.value);
+    let fechaFormat =
+      fechaEleccion.getFullYear() +
+      "-" +
+      ("0" + (fechaEleccion.getMonth() + 1)).slice(-2) +
+      "-" +
+      ("0" + fechaEleccion.getDate()).slice(-2);
+    console.log(fechaFormat);
+    fechaEleccion > fecha ? setFecha(fechaFormat) : setFecha("");
+  };
+
+  const handleTurno = (e) => {
+    console.log(e.target.value);
+  };
+
   useEffect(() => {
-    getTurnos();
-  }, []);
+    fecha != "" ? getTurnos() : "";
+  }, [fecha]);
+
   return (
     <div>
       <h3>Estás en Reservas</h3>
-      <select name="turno" className="">
-        <option value="default">Seleccionar Turno</option>
-        {turnos.map((turno, key)=>(
-          <option value={turno.id} key={key+1}>{turno.hour}</option>
-        ))}
-       
-      </select>
+      <label htmlFor="groupSize">Tamaño del grupo: </label>
+      <input type="number" min="1" onChange={handleGroupSize} value={groupSize} id="groupSize"/>
+      <label htmlFor="fechaReserva">Fecha de la reserva: </label>
+      <input type="date" onChange={handleFecha} id="fechaReserva"/>
+      {mostrar != "" ? (
+        <select name="turno" className="" onChange={handleTurno}>
+          <option value="default">Seleccionar Turno</option>
 
-      {turnos.map(turno=>console.log(turno.hour))}
-{/* 
-      <table>
-        <thead>
-          <tr>
-            <th>Turno</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {turnos.map((turno, key) => {
-            console.log(turno.hour);
-            <tr key={key}>
-              <td>{turno.hour}</td>
-            </tr>;
-          })}
-        </tbody>
-      </table> */}
-      
-      {/* <ul>
-        {turnos.map((turno, key) => {
-          <li key={key}>{turno.hour}</li>;
-        })}
-      </ul> */}
+          {console.log(turnos)}
+          {turnos.map((turno, key) => (
+            <option value={turno.id} key={key+1}>
+              {turno.hour}
+            </option>
+          ))}
+          {/* {turnos.map((turno, key) => (
+            <option value={turno.id} key={key + 1}>
+              {turno.hour}
+            </option>
+          ))} */}
+        </select>
+      ) : (
+        <p>El dia seleccionado no es válido</p>
+      )}
     </div>
   );
 };

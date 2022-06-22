@@ -36,6 +36,26 @@
     
 }
 
+.booking-button{
+  text-align: center;
+  width: 70px;
+  height: 20px;
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #0511f2;
+  color: #F2F2F2;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #0000D6;
+  border-right: 1px solid #F2F2F2;
+  border-bottom: 1px solid #F2F2F2;
+  border-left: 1px solid #0000D6;
+  border-radius: 5px;
+  cursor:pointer;
+}
+.booking-button:hover{
+  transform: translateY(-0.25em);
+}
+
 
   
 @keyframes slidein {
