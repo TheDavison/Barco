@@ -49,21 +49,10 @@ class BookingsController extends AbstractController
     #[Route('/new', name: 'app_bookings_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $booking = new Bookings();
-        $form = $this->createForm(BookingsType::class, $booking);
-        $form->handleRequest($request);
+        $data = json_decode($request->getContent(), true);
+ 
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($booking);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_bookings_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('bookings/new.html.twig', [
-            'booking' => $booking,
-            'form' => $form,
-        ]);
+        return $this->json(Response::HTTP_OK);
     }
 
     #[Route('/{id}', name: 'app_bookings_show', methods: ['GET'])]

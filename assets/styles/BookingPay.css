@@ -1,0 +1,137 @@
+.payment {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: initial;
+  }
+  .payment__container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    /* background-color: #222226; */
+    /* border: 1px solid black; */
+  }
+  
+  /* .donation-form__add {
+    flex: 1;
+    border: 1px solid #f2f2f2;
+    box-shadow: -9px 0px 29px 0px #f2f2f2;
+  } */
+   /* .donation-form__add img {
+    width: 100%;
+    height: 100%;
+    transform:rotate(90deg);
+  }  */
+  
+  .payment__main {
+    flex: 8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+  
+  .payment__window {
+    color: black;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-evenly;
+    border: 1px solid #f2f2f2;
+  
+    box-shadow: -9px 0px 29px 0px #1a74d8;
+    width: 70%;
+    margin-top: 200px;
+  }
+  
+  .payment__left-column {
+    display: flex;
+    padding-top: 20px;
+    flex-flow: column;
+    justify-content: center;
+  }
+  .payment__payment-methods {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+  }
+  
+  .active-type {
+    box-shadow: 0px 0px 8px 4px #1a74d8;
+  }
+  
+  .payment__payment-method:nth-child(1) {
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid #f2f2f2;
+    color: #f2f2f2f2;
+    /* background-color: red; */
+    /* background: rgb(228,0,25); */
+    background: linear-gradient(
+      90deg,
+      rgb(228, 0, 25) 0%,
+      rgb(236, 122, 122) 50%,
+      rgb(242, 183, 96) 100%
+    );
+    cursor: pointer;
+  }
+  .payment__payment-method:nth-child(2) {
+    padding: 5px;
+    margin: 5px;
+    width: 70px;
+    border: 1px solid #f2f2f2;
+    color: #f2f2f2f2;
+    /* background-color: red; */
+    /* background: rgb(228,0,25); */
+    background: linear-gradient(
+      90deg,
+      rgba(13, 18, 115, 1) 49%,
+      rgba(121, 96, 63, 1) 50%,
+      rgba(242, 183, 5, 1) 50%
+    );
+    cursor: pointer;
+  }
+  .payment__payment-method:hover{
+    transform: translateY(-0.25em);
+  }
+  .payment__quantity {
+    margin-top: 20px;
+  }
+  
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .form-button {
+    /* text-align: right; */
+    width: 100px;
+    height: 25px;
+    text-align: center;
+    color: #f2f2f2;
+    background-color: #0511f2;
+    border-top: 1px solid #0000d6;
+    border-right: 1px solid #f2f2f2;
+    border-bottom: 1px solid #f2f2f2;
+    border-left: 1px solid #0000d6;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  @media only screen and (max-width: 600px) {
+    .payment__window {
+      box-shadow: 0px 0px 0px 0px #1a74d8;
+    }
+    .payment__add {
+      box-shadow: 0px 0px 0px 0px #1a74d8;
+      border: 0px;
+    }
+    /* .donation-form__add img {
+      display: none;
+    } */
+  }
+  

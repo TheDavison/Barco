@@ -1,24 +1,26 @@
-import React, { useState } from "react";
-import "../styles/DonationForm.css";
-import axios from "axios";
-// import bricoADD from "../img/bricodepotADD.jpg";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../styles/BookingPay.css";
+import axios from "axios";
 
-const DonationForm = () => {
+const BookingPay = ({ groupSize, fecha, primerTurno, pagar, reservar }) => {
+  let navigate = useNavigate();
+  let expresion = new RegExp();
+
   const [type, setType] = useState("MasterCard");
-  const [quantity, setQuantity] = useState(0);
   const [cardNumber, setCardNumber] = useState("");
   const [cardHolder, setCardHolder] = useState("");
   const [cardDate, setCardDate] = useState("");
   const [cardCVV, setCardCVV] = useState("");
-  const [discordUsername, setDiscordUsername] = useState("");
   const [terms, setTerms] = useState(false);
   const [error, setError] = useState("");
 
-  let navigate = useNavigate();
+  const correcto = () => {
+    if (!reservar) {
+      navigate("/reservar", { replace: true });
+    }
+  };
 
-  let expresion = new RegExp();
-  //--------------------------------------------------------------------------
   const handleChange = (e) => {
     if (e.target.name === "card-number") {
       setCardNumber(e.target.value);
@@ -28,10 +30,6 @@ const DonationForm = () => {
       setCardDate(e.target.value);
     } else if (e.target.name === "card-cvv") {
       setCardCVV(e.target.value);
-    } else if (e.target.name === "discord-username") {
-      setDiscordUsername(e.target.value);
-    } else if (e.target.name === "cantidad") {
-      setQuantity(e.target.value);
     }
 
     setError("");
@@ -47,24 +45,6 @@ const DonationForm = () => {
     setError("");
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (checkInputs()) {
-      let donatedSuccesfully = await addDonation();
-
-      if (donatedSuccesfully) {
-        setQuantity(1);
-        setCardNumber("");
-        setCardHolder("");
-        setCardDate("");
-        setCardCVV("");
-        setDiscordUsername("");
-        navigate("/index", { replace: true });
-      }
-    }
-  };
-
   const checkInputs = () => {
     let mayContinue = true;
 
@@ -73,12 +53,8 @@ const DonationForm = () => {
       setError("Solo puede pagar via MasterCard o Visa.");
     }
 
-    if (quantity <= 0) {
-      mayContinue = false;
-      setError("No puede donar una cantidad menor o igual a 0€.");
-    }
-
-    expresion = /^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/gm;
+    expresion =
+      /^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/gm;
     if (!expresion.test(cardNumber)) {
       mayContinue = false;
       setError("Número de tarjeta errónea.");
@@ -102,16 +78,6 @@ const DonationForm = () => {
       setError("Tres numeros de detrás de la tarjeta.");
     }
 
-    expresion = /^([a-zA-Z0-9]{2,32})#(\d{4})$/gm;
-    if(!discordUsername.trim().length <= 0){
-      if (!expresion.test(discordUsername)) {
-        mayContinue = false;
-        setError("No ha escrito bien su id de discord.");
-      }
-    }else{
-      setDiscordUsername("NoDiscord")
-    }
-
     if (!terms) {
       mayContinue = false;
       setError("Acepte los términos antes de continuar por favor.");
@@ -120,43 +86,37 @@ const DonationForm = () => {
     return mayContinue;
   };
 
-  const addDonation = async () => {
-    let haveDonated = false;
-    await axios
-      .post("/donation/new", {
-        type: type,
-        quantity: quantity,
-        cardNumber: cardNumber.split(" ").join(""),
-        cardHolder: cardHolder,
-        cardDate: cardDate,
-        cardCVV: cardCVV,
-        discordUsername: discordUsername,
-      })
-      .then((haveDonated = true))
-      .catch((error) => {
-        console.log(error);
-      });
-    return haveDonated;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (checkInputs()) {
+      axios
+        .post("/bookings/new", {
+          groupSize,
+          fecha,
+          primerTurno,
+        })
+        .then((response) => {
+          navigate("/index", { replace: true });
+        });
+    }
   };
 
-  return (
-    <div className="donation-form__container">
-      {/* <aside className="donation-form__add">
-        <a href="https://www.bricodepot.es/">
-          <img src={bricoADD} alt="publicidad de bricodepot" />
-        </a>
-      </aside> */}
+  useEffect(() => {
+    correcto();
+  }, []);
 
-      <div className="donation-form__main">
-        <div className="donation-form__window">
-          <div className="donation-form__left-column">
+  return (
+    <div className="payment__container">
+      <div className="payment__main">
+        <div className="payment__window">
+          <div className="payment__left-column">
             <p>Métodos de pago</p>
-            <div className="donation-form__payment-methods">
+            <div className="payment__payment-methods">
               <p
                 className={
                   type == "MasterCard"
-                    ? "donation-form__payment-method active-type"
-                    : "donation-form__payment-method"
+                    ? "payment__payment-method active-type"
+                    : "payment__payment-method"
                 }
                 name="donation-type"
                 onClick={() => handleTypeChange("MasterCard")}
@@ -166,8 +126,8 @@ const DonationForm = () => {
               <p
                 className={
                   type == "Visa"
-                    ? "donation-form__payment-method active-type"
-                    : "donation-form__payment-method"
+                    ? "payment__payment-method active-type"
+                    : "payment__payment-method"
                 }
                 name="donation-type"
                 onClick={() => handleTypeChange("Visa")}
@@ -175,35 +135,23 @@ const DonationForm = () => {
                 Visa
               </p>
             </div>
-            <div className="donation-form__quantity">
+            <div className="payment__quantity">
               <label htmlFor="cantidad" className="form-label">
-                Cantidad que va a donar:
+                Cantidad a pagar:
               </label>
-              <input
-                type="number"
-                min="1"
-                className="donation-form__quantity"
-                id="cantidad"
-                onChange={handleChange}
-                name="cantidad"
-                placeholder="1,00€"
-              />
+              <input type="number" value={pagar} disabled />
             </div>
           </div>
 
-          <div className="donation-form__right-column">
-            <form
-              method="post"
-              onSubmit={handleSubmit}
-              className="donation-form"
-            >
+          <div className="payment__right-column">
+            <form method="post" onSubmit={handleSubmit} className="payment">
               <div className="form__number form-field">
                 <label htmlFor="card-number" className="form-label">
                   Número de la tarjeta:
                 </label>
                 <input
                   type="text"
-                  className="donation-form__card-number form-input"
+                  className="payment__card-number form-input"
                   placeholder="XXXX-XXXX-XXXX-XXXX"
                   onChange={handleChange}
                   name="card-number"
@@ -217,7 +165,7 @@ const DonationForm = () => {
                 </label>
                 <input
                   type="text"
-                  className="donation-form__card-holder form-input"
+                  className="payment__card-holder form-input"
                   placeholder="Nombre Apellido Apellido"
                   onChange={handleChange}
                   name="card-holder"
@@ -231,7 +179,7 @@ const DonationForm = () => {
                 </label>
                 <input
                   type="text"
-                  className="donation-form__card-expiring-date form-input"
+                  className="payment__card-expiring-date form-input"
                   placeholder="MM/YYYY"
                   onChange={handleChange}
                   name="card-date"
@@ -245,25 +193,11 @@ const DonationForm = () => {
                 </label>
                 <input
                   type="text"
-                  className="donation-form__card-cvv form-input"
+                  className="payment__card-cvv form-input"
                   placeholder="XXX"
                   onChange={handleChange}
                   name="card-cvv"
                   id="card-cvv"
-                />
-              </div>
-
-              <div className="form__discord-username form-field">
-                <label htmlFor="discord-username" className="form-label">
-                  Usurio de discord (Opcional):
-                </label>
-                <input
-                  type="text"
-                  className="donation-form__discord-username form-input"
-                  placeholder="nombre#tag"
-                  onChange={handleChange}
-                  name="discord-username"
-                  id="discord-username"
                 />
               </div>
 
@@ -281,20 +215,14 @@ const DonationForm = () => {
               {error ? <p className="error_message">{error}</p> : ""}
 
               <div className="form-button">
-                <p onClick={handleSubmit}>Donar</p>
+                <p onClick={handleSubmit}>Pagar {pagar}€</p>
               </div>
             </form>
           </div>
         </div>
       </div>
-
-      {/* <aside className="donation-form__add">
-        <a href="https://www.bricodepot.es/">
-          <img src={bricoADD} alt="publicidad de bricodepot" />
-        </a>
-      </aside> */}
     </div>
   );
 };
 
-export default DonationForm;
+export default BookingPay;

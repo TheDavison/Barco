@@ -1,11 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
+import "../styles/Reservas.css";
+import { useNavigate } from "react-router-dom";
 
-const Reservas = () => {
-  const [turnos, setTurnos] = useState([]);
-  const [groupSize, setGroupSize] = useState(1);
-  const [fecha, setFecha] = useState("");
-  const [mostrar, setMostrar] = useState(false);
+const Reservas = ({
+  turnos,
+  setTurnos,
+  groupSize,
+  setGroupSize,
+  fecha,
+  setFecha,
+  mostrar,
+  setMostrar,
+  primerTurno,
+  setPrimerTurno,
+  pagar,
+  setPagar,
+  setReservar,
+}) => {
+  let navigate = useNavigate();
 
   const getTurnos = async () => {
     setTurnos([]);
@@ -19,17 +32,14 @@ const Reservas = () => {
         // let data = response.data.data;
         // console.log('response data',data);
         // response.data.data ? setTurnos((prev)=>[...prev,response.data.data]) : setTurnos([]);
-         if(response.data.data){
-            for (let t in response.data.data) {
+        if (response.data.data) {
+          for (let t in response.data.data) {
             let { id, hour, booked } = response.data.data[t];
-            
-            let nextTurn = { id, hour, booked };
-            setTurnos((prev)=>[...prev,nextTurn]);
 
-            
+            let nextTurn = { id, hour, booked };
+            setTurnos((prev) => [...prev, nextTurn]);
           }
-      }
-        
+        }
       })
       .catch((error) => {})
       .finally(() => {
@@ -58,39 +68,66 @@ const Reservas = () => {
   };
 
   const handleTurno = (e) => {
-    console.log(e.target.value);
+    setPrimerTurno(e.target.value);
   };
+
+  const handlePagar = () => {
+    setReservar(true);
+    navigate("/pagarReserva", { replace: true });
+
+  }
 
   useEffect(() => {
     fecha != "" ? getTurnos() : "";
     // console.log('turnos',turnos);
   }, [fecha]);
 
+  useEffect(() => {
+    setPagar(2 * groupSize);
+  }, [groupSize]);
+
   return (
     <div>
       <h3>Estás en Reservas</h3>
       <label htmlFor="groupSize">Tamaño del grupo: </label>
-      <input type="number" min="1" onChange={handleGroupSize} value={groupSize} id="groupSize"/>
+      <input
+        type="number"
+        min="1"
+        onChange={handleGroupSize}
+        value={groupSize}
+        id="groupSize"
+      />
       <label htmlFor="fechaReserva">Fecha de la reserva: </label>
-      <input type="date" onChange={handleFecha} id="fechaReserva"/>
+      <input type="date" onChange={handleFecha} id="fechaReserva" />
       {mostrar != "" ? (
         <select name="turno" className="" onChange={handleTurno}>
           <option value="default">Seleccionar Turno</option>
           {/* {turnos.map(turno=>console.log('Turnos',turnos))} */}
-          {turnos.map(turno=>console.log('Turno hora2',turno.hour))}
-          {/* {turnos.map(turno=>console.log('Turno hora',turno[1].hour))} */}
+          {/* {turnos.map(turno=>console.log('Turno hora2',turno.hour))} */}
+          {/* {turnos.map(turno=>console.log('Turno hora',turnos))} */}
           {/* {turnos.map((turno,key)=>(
             <option value={turno.id} key={key+1}>{turno}</option>
           ))} */}
-          
-          {turnos.map((turno, key) => (
-            <option value={turno.id} key={key + 1}>
-              {turno.hour}
-            </option>
-          ))}
+          {turnos.map((turno, key) =>
+            turno.booked ? (
+              <option value={turno.id} key={key + 1} disabled>
+                Reservado
+              </option>
+            ) : (
+              <option value={turno.id} key={key + 1}>
+                {turno.hour}
+              </option>
+            )
+          )}
         </select>
       ) : (
         <p>El dia seleccionado no es válido</p>
+      )}
+
+      {primerTurno != 0 ? (
+        <div className='booking__pay' onClick={handlePagar}><p>Pagar {pagar}€</p></div>
+      ) : (
+        ""
       )}
     </div>
   );
