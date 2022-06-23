@@ -34,7 +34,7 @@ const Inicio = () => {
           amigos.
         </p>
         <div className="inicio__button">
-          <Link to={"/reservar"}>
+          <Link to={"/userBooking"}>
             <div className="booking-button">Reservar ya</div>
           </Link>
         </div>

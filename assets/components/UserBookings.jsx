@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import Reservas from './Reservas';
 
 const UserBookings = () => {
     const [bookings, setBookings] = useState([]);
@@ -22,16 +23,13 @@ const UserBookings = () => {
     };
     const handleBorrar = (e) => {
         // e.preventDefault();
-        setCurrentBooking(e.target.id);
-        // axios.post('bookings/delete'{
-        //   id:id
-        // })
+        setCurrentBooking(id);
+        axios.post('bookings/delete',{
+          id:currentBooking,
+        }).then((response) => console.log(response));
+        
     }
-
-    useEffect(() => {
-      console.log(currentBooking);
-
-    }, [currentBooking])
+    // console.log(currentBooking);
     useEffect(() => {
       getBookings();
     
@@ -39,6 +37,7 @@ const UserBookings = () => {
     }, [])
   return (
     <div>
+        <Reservas />
          <table className="bookings__table">
         <thead>
           <tr>
