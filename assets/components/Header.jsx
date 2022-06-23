@@ -25,6 +25,7 @@ const Header = ({setCurrentUser, currentUser, handleBorrar}) => {
                 <Link to={""}><div className='hader__nav__button'>Inicio</div></Link>
                 <Link to={"Index"}><div className='hader__nav__button'>Stream</div></Link>
                 {currentUser ? '' : <Link to={"login"}><div className='hader__nav__button'>Login</div></Link>}
+                {currentUser ? <Link to={"userBooking"}><div className='hader__nav__button'>Tus reservas</div></Link> : '' }
                 
                 {currentRole.indexOf('ROLE_ADMIN')!=-1 ? <Link to={"admin"}><div className='hader__nav__button'>Admin</div></Link> : ''}
                 {currentUser ? <img src={exit} onClick={handleBorrar} className='header__exit'/> : ''}

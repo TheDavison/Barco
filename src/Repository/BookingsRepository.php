@@ -57,6 +57,15 @@ class BookingsRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+    public function findById($id): array
+    {
+        return $this->createQueryBuilder('b')
+            ->andWhere('b.booker = :val')
+            ->setParameter('val', $id)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
 //    /**
 //     * @return Bookings[] Returns an array of Bookings objects

@@ -50,6 +50,26 @@ class BookingsController extends AbstractController
             'data' => $arrayReservas,
         ]);
     }
+    #[Route('/listbyid', name: 'list_bookings_by_id', methods: ['GET'])]
+    public function listbyid(BookingsRepository $bookingsRepository): Response
+    {
+        $reservas = $bookingsRepository ->findById($this->getUser()->getId());
+        // dump($reservas);die();   
+        $arrayReservas = [];
+
+        foreach ($reservas as $reserva) {
+            $arrayReservas [$reserva->getId()]['id'] = $reserva->getId();
+            $arrayReservas [$reserva->getId()]['booker'] = $reserva->getBooker()->getUsername();
+            $arrayReservas [$reserva->getId()]['turn'] = $reserva->getTurn()->getHour();
+            $arrayReservas [$reserva->getId()]['date'] = $reserva->getDate()->format("d/m/Y");
+        }
+
+
+        return $this->json([
+            'success' => true,
+            'data' => $arrayReservas,
+        ]);
+    }
     #[Route('/new', name: 'app_bookings_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager, TurnsRepository $turnsRepository, BookingsRepository $bookingsRepository): Response
     {

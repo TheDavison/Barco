@@ -15,6 +15,7 @@ import Cookies from "./Cookies";
 import Inicio from "./Inicio";
 import AdminBookings from "./AdminBookings";
 import axios from "axios";
+import UserBookings from "./UserBookings";
 
 const Rutas = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -53,6 +54,7 @@ const Rutas = () => {
           }
         >
           <Route index path="" element={<Inicio />}></Route>
+          <Route index path="userBooking" element={<UserBookings />}></Route>
           <Route
             path="index"
             element={<Index currentUser={currentUser} />}
