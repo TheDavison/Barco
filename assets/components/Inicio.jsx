@@ -20,6 +20,8 @@ const Inicio = () => {
       </section>
       <section className="inicio__section inicio__section__video">
         <ReactPlayer
+        className="inicio__video__box"
+        
           url="https://youtube.com/shorts/1AM2hjGy8-8?feature=share"
           controls
           loop

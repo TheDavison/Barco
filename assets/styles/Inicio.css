@@ -35,6 +35,12 @@
     animation-name: slidein;
     
 }
+.inicio__video__box{
+  
+  width: 1000px;
+  height: 360px;
+
+}
 .inicio__button{
   padding-top: 10px;
 }
@@ -82,4 +88,16 @@
       margin-left: 0%;
       width: 100%;
     }
+}
+@media only screen and (max-width: 600px) {
+  .inicio__container{
+    text-align: justify;
+  }
+  .inicio__Section{
+    width: 70%;
+  }
+  .inicio__video__box{
+    max-width:230px;
+    
+  }
 }
