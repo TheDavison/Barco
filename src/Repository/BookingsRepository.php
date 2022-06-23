@@ -57,7 +57,7 @@ class BookingsRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    public function findById($id): array
+    public function findByBookerId($id): array
     {
         return $this->createQueryBuilder('b')
             ->andWhere('b.booker = :val')
@@ -66,6 +66,16 @@ class BookingsRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    public function findOneById($id): ?Bookings
+   {
+       return $this->createQueryBuilder('b')
+           ->andWhere('b.id = :val')
+           ->setParameter('val', $id)
+           ->getQuery()
+           ->getOneOrNullResult()
+       ;
+   }
 
 //    /**
 //     * @return Bookings[] Returns an array of Bookings objects

@@ -20,14 +20,18 @@ const UserBookings = () => {
         }
       });
     };
-    const handleBorrar = (id) => {
+    const handleBorrar = (e) => {
         // e.preventDefault();
-        setCurrentBooking(id);
+        setCurrentBooking(e.target.id);
         // axios.post('bookings/delete'{
         //   id:id
         // })
-        console.log(currentBooking);
     }
+
+    useEffect(() => {
+      console.log(currentBooking);
+
+    }, [currentBooking])
     useEffect(() => {
       getBookings();
     
@@ -52,7 +56,7 @@ const UserBookings = () => {
               <td>{booking.booker}</td>
               <td>{booking.date}</td>
               <td>{booking.turn}</td>
-              <td><button  onClick={(e)=>handleBorrar(booking.id)}>Borrar</button></td>
+              <td><button onClick={handleBorrar} id={booking.id}>Borrar</button></td>
               {/* onClick={(e)=>handleBorrar(booking.id)} */}
             </tr>
           ))}
