@@ -53,7 +53,7 @@ class BookingsController extends AbstractController
     #[Route('/listbyid', name: 'list_bookings_by_id', methods: ['GET'])]
     public function listbyid(BookingsRepository $bookingsRepository): Response
     {
-        $reservas = $bookingsRepository ->findById($this->getUser()->getId());
+        $reservas = $bookingsRepository ->findByBookerId($this->getUser()->getId());
         // dump($reservas);die();   
         $arrayReservas = [];
 
@@ -144,13 +144,14 @@ class BookingsController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_bookings_delete', methods: ['POST'])]
-    public function delete(Request $request, Bookings $booking, EntityManagerInterface $entityManager): Response
+    #[Route('/delete', name: 'app_bookings_delete', methods: ['POST'])]
+    public function delete(Request $request, Bookings $booking, EntityManagerInterface $entityManager, BookingsRepository $bookingsRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$booking->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($booking);
-            $entityManager->flush();
-        }
+        $data = json_decode($request->getContent(), true);
+
+        $booking = $bookingsRepository -> findOneById($data['id']);
+        $entityManager->remove($booking);
+        $entityManager->flush();
 
         return $this->redirectToRoute('app_bookings_index', [], Response::HTTP_SEE_OTHER);
     }

@@ -73,8 +73,7 @@ const Reservas = ({
   const handlePagar = () => {
     setReservar(true);
     navigate("/pagarReserva", { replace: true });
-
-  }
+  };
 
   useEffect(() => {
     fecha != "" ? getTurnos() : "";
@@ -86,32 +85,26 @@ const Reservas = ({
   }, [groupSize]);
 
   return (
-    
-      <div className="booking__container">
-        <section className="booking__section">
-      <h3>Estás en Reservas</h3>
-      <label htmlFor="groupSize">Tamaño del grupo: </label>
-      <input
-        type="number"
-        min="1"
-        onChange={handleGroupSize}
-        value={groupSize}
-        id="groupSize"
+    <div className="booking__container">
+      <section className="booking__section">
+        <h3>Estás en Reservas</h3>
+        <label htmlFor="groupSize">Tamaño del grupo: </label>
+        <input
+          type="number"
+          min="1"
+          onChange={handleGroupSize}
+          value={groupSize}
+          id="groupSize"
         />
-        </section>
-        <section className="booking__section">
-      <label htmlFor="fechaReserva">Fecha de la reserva: </label>
-      <input type="date" onChange={handleFecha} id="fechaReserva" />
+      </section>
+      <section className="booking__section">
+        <label htmlFor="fechaReserva">Fecha de la reserva: </label>
+        <input type="date" onChange={handleFecha} id="fechaReserva" />
       </section>
       {mostrar != "" ? (
         <select name="turno" className="" onChange={handleTurno}>
           <option value="default">Seleccionar Turno</option>
-          {/* {turnos.map(turno=>console.log('Turnos',turnos))} */}
-          {/* {turnos.map(turno=>console.log('Turno hora2',turno.hour))} */}
-          {/* {turnos.map(turno=>console.log('Turno hora',turnos))} */}
-          {/* {turnos.map((turno,key)=>(
-            <option value={turno.id} key={key+1}>{turno}</option>
-          ))} */}
+
           {turnos.map((turno, key) =>
             turno.booked ? (
               <option value={turno.id} key={key + 1} disabled>
@@ -129,13 +122,13 @@ const Reservas = ({
       )}
 
       {primerTurno != 0 ? (
-        <div className='booking__pay' onClick={handlePagar}><p>Pagar {pagar}€</p></div>
+        <div className="booking__pay" onClick={handlePagar}>
+          <p>Pagar {pagar}€</p>
+        </div>
       ) : (
         ""
       )}
-      </div>
-    
-
+    </div>
   );
 };
 
