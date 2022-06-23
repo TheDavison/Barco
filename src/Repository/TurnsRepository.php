@@ -47,6 +47,16 @@ class TurnsRepository extends ServiceEntityRepository
         }
     }
 
+    public function findOneById($id): ?Turns
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.id = :val')
+            ->setParameter('val', $id)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    } 
+
 //    /**
 //     * @return Turns[] Returns an array of Turns objects
 //     */

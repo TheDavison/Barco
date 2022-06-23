@@ -24,7 +24,7 @@ const Rutas = () => {
   const [groupSize, setGroupSize] = useState(1);
   const [fecha, setFecha] = useState("");
   const [mostrar, setMostrar] = useState(false);
-  const [primerTurno, setPrimerTurno] = useState(0);
+  const [primerTurno, setPrimerTurno] = useState("");
   const [pagar, setPagar] = useState(2);
   const [reservar, setReservar] = useState(false);
 
@@ -97,12 +97,19 @@ const Rutas = () => {
             element={
               <BookingPay
                 turnos={turnos}
+                setTurnos={setTurnos}
                 groupSize={groupSize}
+                setGroupSize={setGroupSize}
                 fecha={fecha}
+                setFecha={setFecha}
                 mostrar={mostrar}
+                setMostrar={setMostrar}
                 primerTurno={primerTurno}
+                setPrimerTurno={setPrimerTurno}
                 pagar={pagar}
+                setPagar={setPagar}
                 reservar={reservar}
+                setReservar={setReservar}
               />
             }
           ></Route>

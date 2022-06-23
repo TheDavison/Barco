@@ -3,10 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Bookings;
+use App\Repository\BookingsRepository;
+
+use App\Entity\Turns;
+use App\Repository\TurnsRepository;
+
+use DateTime;
 use App\Form\BookingsType;
 use Doctrine\ORM\EntityManagerInterface;
-
-use App\Repository\BookingsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -47,10 +51,49 @@ class BookingsController extends AbstractController
         ]);
     }
     #[Route('/new', name: 'app_bookings_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, TurnsRepository $turnsRepository, BookingsRepository $bookingsRepository): Response
     {
         $data = json_decode($request->getContent(), true);
- 
+        $lastTurnADay = 120;
+        $turno = 0;
+        $reservas = 0;
+        
+        while($reservas < $data['groupSize']){
+            //Id del turno que se intenta Reservar
+            $reservarEsteTurno = (int)(((int) $data['primerTurno']+$turno)%$lastTurnADay);
+            //Variable si no hay turnos durante el dia que que se ha elegido;
+            $reservarEnEsteDia = (int)(((int) $data['primerTurno']+$turno)/$lastTurnADay);
+
+            //Creación de la fecha correcta
+            $fecha = new DateTime($data['fecha']);
+            $fecha -> modify('+'.$reservarEnEsteDia.' day');
+            
+            //Array de los ids de los turnos del día que han sido reservados
+            $booking = $bookingsRepository -> findByDate($data['fecha']);
+            $bookedTurns = [];
+    
+            foreach($booking as $book){
+                array_push($bookedTurns, $book -> getTurn() -> getId());
+            }
+
+
+            //Compruebo si el turno está reservado
+            if(!in_array($reservarEsteTurno, $bookedTurns)){
+            
+                $newBooking = new Bookings();
+
+                $newBooking -> setBooker($this->getUser());
+
+                $newBooking -> setDate($fecha);
+
+                $newBooking -> setTurn($turnsRepository -> findOneById($reservarEsteTurno));
+
+                $entityManager->persist($newBooking);
+                $entityManager->flush();
+                $reservas++;
+            }
+            $turno++;
+        }
 
         return $this->json(Response::HTTP_OK);
     }

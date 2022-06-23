@@ -63,7 +63,6 @@ const Reservas = ({
       ("0" + (fechaEleccion.getMonth() + 1)).slice(-2) +
       "-" +
       ("0" + fechaEleccion.getDate()).slice(-2);
-    console.log(fechaFormat);
     fechaEleccion > fecha ? setFecha(fechaFormat) : setFecha("");
   };
 
