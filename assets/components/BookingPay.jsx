@@ -3,7 +3,18 @@ import { useNavigate } from "react-router-dom";
 import "../styles/BookingPay.css";
 import axios from "axios";
 
-const BookingPay = ({ groupSize, fecha, primerTurno, pagar, reservar }) => {
+const BookingPay = ({
+  groupSize,
+  setGroupSize,
+  fecha,
+  setFecha,
+  primerTurno,
+  setPrimerTurno,
+  pagar,
+  setPagar,
+  reservar,
+  setReservar,
+}) => {
   let navigate = useNavigate();
   let expresion = new RegExp();
 
@@ -88,7 +99,7 @@ const BookingPay = ({ groupSize, fecha, primerTurno, pagar, reservar }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (checkInputs()) {
+    // if (checkInputs()) {
       axios
         .post("/bookings/new", {
           groupSize,
@@ -96,13 +107,18 @@ const BookingPay = ({ groupSize, fecha, primerTurno, pagar, reservar }) => {
           primerTurno,
         })
         .then((response) => {
-          navigate("/index", { replace: true });
+          setGroupSize(1);
+          setFecha("");
+          setPrimerTurno("");
+          setPagar(2);
+          setReservar(false);
+          // navigate("/index", { replace: true });
         });
-    }
+    // }
   };
 
   useEffect(() => {
-    correcto();
+    // correcto();
   }, []);
 
   return (
