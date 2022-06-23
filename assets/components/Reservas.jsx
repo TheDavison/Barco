@@ -87,7 +87,9 @@ const Reservas = ({
   }, [groupSize]);
 
   return (
-    <div>
+    
+      <div className="booking__container">
+        <section className="booking__section">
       <h3>Estás en Reservas</h3>
       <label htmlFor="groupSize">Tamaño del grupo: </label>
       <input
@@ -96,9 +98,12 @@ const Reservas = ({
         onChange={handleGroupSize}
         value={groupSize}
         id="groupSize"
-      />
+        />
+        </section>
+        <section className="booking__section">
       <label htmlFor="fechaReserva">Fecha de la reserva: </label>
       <input type="date" onChange={handleFecha} id="fechaReserva" />
+      </section>
       {mostrar != "" ? (
         <select name="turno" className="" onChange={handleTurno}>
           <option value="default">Seleccionar Turno</option>
@@ -129,7 +134,9 @@ const Reservas = ({
       ) : (
         ""
       )}
-    </div>
+      </div>
+    
+
   );
 };
 

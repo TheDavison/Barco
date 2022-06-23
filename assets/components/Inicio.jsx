@@ -33,7 +33,7 @@ const Inicio = () => {
           Reserva ahora el día y la hora que quieras para divertirte con tus
           amigos.
         </p>
-        <div>
+        <div className="inicio__button">
           <Link to={"/reservar"}>
             <div className="booking-button">Reservar ya</div>
           </Link>

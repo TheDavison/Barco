@@ -35,6 +35,9 @@
     animation-name: slidein;
     
 }
+.inicio__button{
+  padding-top: 10px;
+}
 
 .booking-button{
   text-align: center;
