@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Reservas from "./Reservas";
-
+import '../styles/UserBookings.css';
 const UserBookings = ({
   groupSize,
   setGroupSize,
@@ -49,7 +49,8 @@ const UserBookings = ({
     // console.log("entro")
   }, []);
   return (
-    <div>
+    <div className="user__booking__container">
+      <div className="user__booking__reservas">
       <Reservas
         groupSize={groupSize}
         setGroupSize={setGroupSize}
@@ -61,7 +62,8 @@ const UserBookings = ({
         setPagar={setPagar}
         setReservar={setReservar}
       />
-      <table className="bookings__table">
+      </div>
+      <table className="user__booking__table">
         <thead>
           <tr>
             <th>Id</th>

@@ -1,0 +1,56 @@
+
+.user__booking__container{
+    padding-top: 20px;
+    width: 40%;
+    /* height: 20%; */
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    border: 1px solid #f2f2f2;
+    box-shadow: -9px 0px 29px 0px #1a74d8;
+    padding-bottom: 20px;
+    
+}
+.user__booking__reservas{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    text-align: justify;
+    margin-bottom:20px;
+}
+
+table, td, th {
+    height: 100%;
+    background-color:#9cdab0;
+    color: black;
+    border: 1px solid #f2f2f2;
+    
+    border-collapse: collapse;
+}
+
+.user__booking__table th{
+    padding: 10px;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.user__booking__table td{
+    padding: 10px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .user__booking__container{
+        width: 90%;
+    }
+    .user__booking__table{
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+
