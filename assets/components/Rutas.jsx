@@ -21,12 +21,11 @@ const Rutas = () => {
   const [currentUser, setCurrentUser] = useState(null);
 
   //-----------------Reservas-----------------
-  const [turnos, setTurnos] = useState([]);
+
   const [groupSize, setGroupSize] = useState(1);
   const [fecha, setFecha] = useState("");
-  const [mostrar, setMostrar] = useState(false);
   const [primerTurno, setPrimerTurno] = useState("");
-  const [pagar, setPagar] = useState(2);
+  const [pagar, setPagar] = useState(2 * primerTurno);
   const [reservar, setReservar] = useState(false);
 
   useEffect(() => {
@@ -54,7 +53,23 @@ const Rutas = () => {
           }
         >
           <Route index path="" element={<Inicio />}></Route>
-          <Route index path="userBooking" element={<UserBookings />}></Route>
+          <Route
+            index
+            path="userBooking"
+            element={
+              <UserBookings
+                groupSize={groupSize}
+                setGroupSize={setGroupSize}
+                fecha={fecha}
+                setFecha={setFecha}
+                primerTurno={primerTurno}
+                setPrimerTurno={setPrimerTurno}
+                pagar={pagar}
+                setPagar={setPagar}
+                setReservar={setReservar}
+              />
+            }
+          ></Route>
           <Route
             path="index"
             element={<Index currentUser={currentUser} />}
@@ -75,37 +90,13 @@ const Rutas = () => {
           <Route path="aboutUs" element={<AboutUs />}></Route>
           <Route path="cookies" element={<Cookies />}></Route>
           <Route
-            path="reservar"
-            element={
-              <Reservas
-                turnos={turnos}
-                setTurnos={setTurnos}
-                groupSize={groupSize}
-                setGroupSize={setGroupSize}
-                fecha={fecha}
-                setFecha={setFecha}
-                mostrar={mostrar}
-                setMostrar={setMostrar}
-                primerTurno={primerTurno}
-                setPrimerTurno={setPrimerTurno}
-                pagar={pagar}
-                setPagar={setPagar}
-                setReservar={setReservar}
-              />
-            }
-          ></Route>
-          <Route
             path="pagarReserva"
             element={
               <BookingPay
-                turnos={turnos}
-                setTurnos={setTurnos}
                 groupSize={groupSize}
                 setGroupSize={setGroupSize}
                 fecha={fecha}
                 setFecha={setFecha}
-                mostrar={mostrar}
-                setMostrar={setMostrar}
                 primerTurno={primerTurno}
                 setPrimerTurno={setPrimerTurno}
                 pagar={pagar}

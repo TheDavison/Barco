@@ -1,17 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/Reservas.css";
 import { useNavigate } from "react-router-dom";
 
 const Reservas = ({
-  turnos,
-  setTurnos,
   groupSize,
   setGroupSize,
   fecha,
   setFecha,
-  mostrar,
-  setMostrar,
   primerTurno,
   setPrimerTurno,
   pagar,
@@ -19,6 +15,9 @@ const Reservas = ({
   setReservar,
 }) => {
   let navigate = useNavigate();
+
+  const [turnos, setTurnos] = useState([]);
+  const [mostrar, setMostrar] = useState(false);
 
   const getTurnos = async () => {
     setTurnos([]);

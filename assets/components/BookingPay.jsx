@@ -99,7 +99,7 @@ const BookingPay = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // if (checkInputs()) {
+    if (checkInputs()) {
       axios
         .post("/bookings/new", {
           groupSize,
@@ -112,13 +112,13 @@ const BookingPay = ({
           setPrimerTurno("");
           setPagar(2);
           setReservar(false);
-          // navigate("/index", { replace: true });
+          navigate("/userBooking", { replace: true });
         });
-    // }
+    }
   };
 
   useEffect(() => {
-    // correcto();
+    correcto();
   }, []);
 
   return (
